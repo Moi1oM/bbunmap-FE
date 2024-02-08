@@ -1,0 +1,40 @@
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+interface ImageTitleDescriptionProps {
+  title: string;
+  description: string;
+  image: string;
+  buildingName: string;
+}
+
+export const ImageTitleDescription = ({
+  title,
+  description,
+  image,
+  buildingName,
+}: ImageTitleDescriptionProps) => {
+  const router = useRouter();
+  return (
+    <div
+      className="flex-col flex items-start justify-start max-w-[200px] overflow-hidden cursor-pointer mt-4 mr-3"
+      onClick={() => {
+        router.push(`f/detail?building=${buildingName}&type=${title}`);
+      }}
+    >
+      <div className="relative w-[167px] h-[120px]">
+        <Image
+          src={image}
+          sizes="(max-width: 600px) 100vw"
+          fill
+          className="object-contain"
+          alt="Documents"
+        />
+      </div>
+      <span className="text-xl font-bold">{title}</span>
+      <span className="text-base font-semibold text-[#A0A4A8]">
+        {description}
+      </span>
+    </div>
+  );
+};
