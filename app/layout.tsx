@@ -20,10 +20,10 @@ export default async function RootLayout({
   const mainURL = process.env.NEXT_PUBLIC_MAIN_URL;
   return (
     <html lang="en" className="overflow-scroll scrollbar-hide">
-      <meta property="og:url" content={`${mainURL}`} />
+      <meta property="og:url" content={`https://www.bbunmap.com`} />
       <meta property="og:title" content="뻔맵-BbunMap" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content={`${mainURL}/main.png`} />
+      <meta property="og:image" content={`https://www.bbunmap.com/main.png`} />
       <meta
         property="og:description"
         content="뻔맵-BbunMap for Korea University students"
