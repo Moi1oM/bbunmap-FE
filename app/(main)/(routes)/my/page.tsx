@@ -74,12 +74,14 @@ const Reward = () => {
           <span className="ml-3">뻔맵에게 피드백 주기</span>
           <MyCurious />
         </div>
-        <span
-          className="text-gray-200 bottom-20 fixed"
-          onClick={() => signOut()}
-        >
-          로그아웃
-        </span>
+        {!session && (
+          <span
+            className="text-gray-200 bottom-20 fixed"
+            onClick={() => signOut()}
+          >
+            로그아웃
+          </span>
+        )}
       </div>
     </div>
   );
