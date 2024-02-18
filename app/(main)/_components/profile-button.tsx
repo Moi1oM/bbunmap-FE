@@ -18,7 +18,7 @@ export const ProfileButton = () => {
     );
   }
 
-  console.log(session);
+  // console.log(session);
 
   return (
     <Avatar className="h-7 w-7 cursor-pointer" onClick={() => signOut()}>

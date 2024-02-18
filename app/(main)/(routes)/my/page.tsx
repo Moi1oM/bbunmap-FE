@@ -14,6 +14,11 @@ const Reward = () => {
   const router = useRouter();
   const { setTab } = useTabBarStore();
 
+  let profileImageUrl = session?.user?.image;
+  if (profileImageUrl && profileImageUrl.startsWith("http://")) {
+    profileImageUrl = profileImageUrl.replace("http://", "https://");
+  }
+
   useEffect(() => {
     setTab("my");
   }, [setTab]);
@@ -21,17 +26,17 @@ const Reward = () => {
   return (
     <div className="w-full max-w-[450px] h-full left-0 top-0">
       <div className="flex flex-col justify-start items-center">
-        {session?.user?.image ? (
+        {profileImageUrl ? (
           <div className="mt-20 cursor-pointer flex flex-col justify-start items-center">
             <Avatar
               className="h-20 w-20 cursor-pointer"
               onClick={() => signOut()}
             >
-              <AvatarImage src={session.user!.image!} alt="@user" />
-              <AvatarFallback>{session.user!.name}</AvatarFallback>
+              <AvatarImage src={profileImageUrl} alt="@user" />
+              <AvatarFallback>{profileImageUrl}</AvatarFallback>
             </Avatar>
             <span className="mt-3 mb-3 font-semibold">
-              {session.user?.email}
+              {session?.user?.email}
             </span>
           </div>
         ) : (
