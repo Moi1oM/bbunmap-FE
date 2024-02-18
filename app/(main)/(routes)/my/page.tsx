@@ -21,7 +21,7 @@ const Reward = () => {
   return (
     <div className="w-full max-w-[450px] h-full left-0 top-0">
       <div className="flex flex-col justify-start items-center">
-        {session ? (
+        {session?.user?.image ? (
           <div className="mt-20 cursor-pointer flex flex-col justify-start items-center">
             <Avatar
               className="h-20 w-20 cursor-pointer"
