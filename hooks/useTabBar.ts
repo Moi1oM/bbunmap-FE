@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type Tab = "home" | "reward" | "onAir" | "recommand";
+export type Tab = "home" | "my" | "onAir" | "recommand";
 
 type TabStore = {
   currentTab: Tab;
