@@ -8,16 +8,12 @@ import MyCurious from "@/public/icons/my_curious.svg";
 import { useRouter } from "next/navigation";
 import { useTabBarStore } from "@/hooks/useTabBar";
 import { useEffect } from "react";
+import { ProfileButton } from "../../_components/profile-button";
 
 const Reward = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const { setTab } = useTabBarStore();
-
-  let profileImageUrl = session?.user?.image;
-  if (profileImageUrl && profileImageUrl.startsWith("http://")) {
-    profileImageUrl = profileImageUrl.replace("http://", "https://");
-  }
 
   useEffect(() => {
     setTab("my");
@@ -26,15 +22,12 @@ const Reward = () => {
   return (
     <div className="w-full max-w-[450px] h-full left-0 top-0">
       <div className="flex flex-col justify-start items-center">
-        {profileImageUrl ? (
-          <div className="mt-20 cursor-pointer flex flex-col justify-start items-center">
-            <Avatar
-              className="h-20 w-20 cursor-pointer"
-              onClick={() => signOut()}
-            >
-              <AvatarImage src={profileImageUrl} alt="@user" />
-              <AvatarFallback>{profileImageUrl}</AvatarFallback>
-            </Avatar>
+        {session ? (
+          <div
+            className="mt-20 cursor-pointer flex flex-col justify-start items-center"
+            onClick={() => signOut()}
+          >
+            <ProfileButton size="lg" />
             <span className="mt-3 mb-3 font-semibold">
               {session?.user?.email}
             </span>
@@ -79,9 +72,9 @@ const Reward = () => {
           <span className="ml-3">뻔맵에게 피드백 주기</span>
           <MyCurious />
         </div>
-        {!session && (
+        {session && (
           <span
-            className="text-gray-200 bottom-20 fixed"
+            className="text-gray-200 bottom-20 fixed cursor-pointer"
             onClick={() => signOut()}
           >
             로그아웃
