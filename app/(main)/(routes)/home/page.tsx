@@ -3,15 +3,13 @@
 import KakaoMap, { BuildingInfo } from "@/app/_components/kakao-map";
 import dynamic from "next/dynamic";
 
+import Image from "next/image";
 import BottomSheetCard from "../../_components/bottom-sheet-card";
-import TabBar from "../../_components/tab-bar/tab-bar";
 import TopAppBar from "../../_components/top-app-bar";
-import NewRouteCard from "../../_components/new-route-card";
 import BottomSheetTitle from "../../_components/bottom-sheet-title";
 import { useSearchModal } from "@/hooks/useSearchModal";
 import { useSession } from "next-auth/react";
 import { SearchModal } from "../../_components/search-modal/search-modal";
-import { MapMarker } from "react-kakao-maps-sdk";
 import { useEffect } from "react";
 import { useTabBarStore } from "@/hooks/useTabBar";
 
@@ -77,19 +75,30 @@ export default function Home() {
           buildingName={onAirData.buildingName}
           buildingMaxCapacity={onAirData.buildingMaxCapacity}
           seats={onAirData.seats}
+          showText={true}
         />
-        <BottomSheetTitle route="/r">
+        <BottomSheetTitle route="/recommand">
           <div>
             뉴 업뎃 <strong>이동꿀팁</strong>
           </div>
         </BottomSheetTitle>
-        <NewRouteCard
+        <div className="relative w-full mb-4">
+          <Image
+            src={"/sample1.jpg"}
+            alt="route Image"
+            layout="responsive"
+            width={1920} // 원본 이미지의 너비
+            height={1080} // 원본 이미지의 높이
+            objectFit="cover"
+          />
+        </div>
+        {/* <NewRouteCard
           fromBuildingName={routeData.fromBulidingName}
           toBuildingName={routeData.toBuildingName}
-        />
-        <span className="mt-6 self-center">
-          더 추가할 예정입니다! 많은 관심 부탁드려요 :)
-        </span>
+        /> */}
+        <BottomSheetTitle route="/recommand" settingRecommand={true}>
+          <div className="font-semibold">지금 갈만한 곳은</div>
+        </BottomSheetTitle>
       </BottomSheetWithDynamicImport>
       {isSearchModalOpen && <SearchModal />}
     </div>
