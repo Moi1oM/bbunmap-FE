@@ -40,7 +40,12 @@ const SearchBottomModal = ({
   };
 
   return (
-    <div className="h-[280px] bottom-0 z-20 fixed bg-white max-w-[450px] w-full rounded-t-2xl">
+    <div
+      className={cn(
+        buttonAvailable ? "h-[280px]" : "h-[320px]",
+        "bottom-0 z-20 fixed bg-white max-w-[450px] w-full rounded-t-2xl"
+      )}
+    >
       <div className="flex flex-col justify-start">
         <div className="flex flex-row items-center justify-evenly mt-6">
           <div className="flex flex-col items-start justify-start">

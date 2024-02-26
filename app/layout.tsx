@@ -28,6 +28,10 @@ export default async function RootLayout({
         property="og:description"
         content="뻔맵-BbunMap for Korea University students"
       />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
       <body className={inter.className}>
         <SessionProvider session={session}>{children}</SessionProvider>
       </body>

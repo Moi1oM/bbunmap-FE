@@ -1,5 +1,6 @@
 "use client";
 
+import { useBottomSheetStore } from "@/hooks/useBottomSheetAppearance";
 import { useSearchBottomModal } from "@/hooks/useSearchBottomModal";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
@@ -27,6 +28,7 @@ interface KakaoMapProps {
   center: LatLng;
   markerModalEvent?: boolean;
   bulidingInfoEvent?: boolean;
+  bottomSheetEvent?: boolean;
 }
 
 const KakaoMap = ({
@@ -34,6 +36,7 @@ const KakaoMap = ({
   center,
   markerModalEvent,
   bulidingInfoEvent,
+  bottomSheetEvent,
 }: KakaoMapProps) => {
   const router = useRouter();
   const [state, setState] = useState({
@@ -50,7 +53,7 @@ const KakaoMap = ({
     setSearchBottomModalClose,
     bottomModalSearchBuilding,
   } = useSearchBottomModal();
-
+  const { isBottomSheetVisible, toggleBottomSheet } = useBottomSheetStore(); // Zustand store 사용
   return (
     <>
       <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
@@ -92,7 +95,11 @@ const KakaoMap = ({
                 }
               }
               if (bulidingInfoEvent) {
-                router.push(`/b/detail?building=${item.name}`);
+                // router.push(`/b/detail?building=${item.name}`);
+              }
+              if (bottomSheetEvent) {
+                setBottomModalSearchBuilding(item.name!);
+                toggleBottomSheet();
               }
             }}
           />

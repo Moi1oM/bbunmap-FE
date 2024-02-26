@@ -12,6 +12,8 @@ import { useSession } from "next-auth/react";
 import { SearchModal } from "../../_components/search-modal/search-modal";
 import { useEffect } from "react";
 import { useTabBarStore } from "@/hooks/useTabBar";
+import { useBottomSheetStore } from "@/hooks/useBottomSheetAppearance";
+import SearchBottomModal from "../../_components/search-bottom-modal/search-bottom-modal";
 
 const BottomSheetWithDynamicImport = dynamic(
   () => import("../../_components/bottom-sheet/BottomSheet"),
@@ -28,6 +30,7 @@ export default function Home() {
   const { isSearchModalOpen, setSearchModalClose } = useSearchModal();
   const { data: session } = useSession();
   const { setTab } = useTabBarStore();
+  const { isBottomSheetVisible, openBottomSheet } = useBottomSheetStore(); // Zustand store 사용
 
   const latLng: BuildingInfo[] = [
     { lat: 37.5845688, lng: 127.0265505, name: "과학도서관" },
@@ -44,7 +47,8 @@ export default function Home() {
   useEffect(() => {
     setTab("home");
     setSearchModalClose();
-  }, [setSearchModalClose, setTab]);
+    openBottomSheet();
+  }, [openBottomSheet, setSearchModalClose, setTab]);
 
   const routeData = {
     fromBulidingName: "미래관",
@@ -53,53 +57,63 @@ export default function Home() {
 
   return (
     <div className="w-full max-w-[450px] h-full left-0 top-0">
-      <KakaoMap markers={latLng} center={center} bulidingInfoEvent={true} />
+      <KakaoMap
+        markers={latLng}
+        center={center}
+        bulidingInfoEvent={true}
+        bottomSheetEvent={true}
+      />
       <TopAppBar />
-      <BottomSheetWithDynamicImport>
-        <BottomSheetTitle route="/b">
-          <div>
-            {!session && (
-              <span>
-                <strong>실시간</strong> 인기 공간 정보
-              </span>
-            )}
-            {session && (
-              <span>
-                {session?.user?.name}을 위한 <strong>실시간</strong> 내 주변
-                공간 정보
-              </span>
-            )}
-          </div>
-        </BottomSheetTitle>
-        <BottomSheetCard
-          buildingName={onAirData.buildingName}
-          buildingMaxCapacity={onAirData.buildingMaxCapacity}
-          seats={onAirData.seats}
-          showText={true}
-        />
-        <BottomSheetTitle route="/recommand">
-          <div>
-            뉴 업뎃 <strong>이동꿀팁</strong>
-          </div>
-        </BottomSheetTitle>
-        <div className="relative w-full mb-4">
-          <Image
-            src={"/sample1.jpg"}
-            alt="route Image"
-            layout="responsive"
-            width={1920} // 원본 이미지의 너비
-            height={1080} // 원본 이미지의 높이
-            objectFit="cover"
+      {isBottomSheetVisible && (
+        <BottomSheetWithDynamicImport>
+          <BottomSheetTitle route="/b">
+            <div>
+              {!session && (
+                <span>
+                  <strong>실시간</strong> 인기 공간 정보
+                </span>
+              )}
+              {session && (
+                <span>
+                  {session?.user?.name}을 위한 <strong>실시간</strong> 내 주변
+                  공간 정보
+                </span>
+              )}
+            </div>
+          </BottomSheetTitle>
+          <BottomSheetCard
+            buildingName={onAirData.buildingName}
+            buildingMaxCapacity={onAirData.buildingMaxCapacity}
+            seats={onAirData.seats}
+            showText={true}
           />
-        </div>
-        {/* <NewRouteCard
+          <BottomSheetTitle route="/recommand">
+            <div>
+              뉴 업뎃 <strong>이동꿀팁</strong>
+            </div>
+          </BottomSheetTitle>
+          <div className="relative w-full mb-4">
+            <Image
+              src={"/sample1.jpg"}
+              alt="route Image"
+              layout="responsive"
+              width={1920} // 원본 이미지의 너비
+              height={1080} // 원본 이미지의 높이
+              objectFit="cover"
+            />
+          </div>
+          {/* <NewRouteCard
           fromBuildingName={routeData.fromBulidingName}
           toBuildingName={routeData.toBuildingName}
         /> */}
-        <BottomSheetTitle route="/recommand" settingRecommand={true}>
-          <div className="font-semibold">지금 갈만한 곳은</div>
-        </BottomSheetTitle>
-      </BottomSheetWithDynamicImport>
+          <BottomSheetTitle route="/recommand" settingRecommand={true}>
+            <div className="font-semibold">지금 갈만한 곳은</div>
+          </BottomSheetTitle>
+        </BottomSheetWithDynamicImport>
+      )}
+      {!isBottomSheetVisible && (
+        <SearchBottomModal searchType="메인" buttonNumber={1} />
+      )}
       {isSearchModalOpen && <SearchModal />}
     </div>
   );
