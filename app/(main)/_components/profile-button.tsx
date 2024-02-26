@@ -7,11 +7,11 @@ export const ProfileButton = ({ size = "sm" }) => {
   const { data: session } = useSession();
 
   let profileImageUrl = session?.user?.image;
-  console.log("before", profileImageUrl);
+  // console.log("before", profileImageUrl);
   if (profileImageUrl && profileImageUrl.startsWith("http://")) {
     profileImageUrl = profileImageUrl.replace("http://", "https://");
   }
-  console.log("after", profileImageUrl);
+  // console.log("after", profileImageUrl);
 
   const avatarSize = size === "lg" ? "h-20 w-20" : "h-7 w-7";
 

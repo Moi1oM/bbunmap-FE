@@ -8,12 +8,14 @@ interface TabBarButtonProps {
   iconSelected: React.ReactNode;
   iconNonSelected: React.ReactNode;
   title: Tab;
+  displayName: string;
 }
 
 const TabBarButton = ({
   iconSelected,
   iconNonSelected,
   title,
+  displayName,
 }: TabBarButtonProps) => {
   const { currentTab, setTab } = useTabBarStore();
   const router = useRouter();
@@ -34,7 +36,7 @@ const TabBarButton = ({
           currentTab === title ? { color: "#000000" } : { color: "#9CA3AF" }
         }
       >
-        {title}
+        {displayName ? displayName : title}
       </span>
     </div>
   );

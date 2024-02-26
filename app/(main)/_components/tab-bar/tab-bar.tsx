@@ -17,21 +17,25 @@ export default function TapBar() {
         title="home"
         iconSelected={<HomeIconAbled className="h-6 w-6" />}
         iconNonSelected={<HomeIcon className="h-6 w-6" />}
+        displayName="홈"
       />
       <TabBarButton
         title="onAir"
         iconSelected={<OnAirIconAbled className="h-6 w-6 " />}
         iconNonSelected={<OnAirIcon className="h-6 w-6 " />}
+        displayName="실시간"
       />
       <TabBarButton
         title="recommand"
         iconSelected={<RecommIconAbled className="h-6 w-6" />}
         iconNonSelected={<RecommIcon className="h-6 w-6 " />}
+        displayName="뻔맵추천"
       />
       <TabBarButton
         title="my"
         iconSelected={<MyIconAbled className="h-6 w-6 " />}
         iconNonSelected={<MyIcon className="h-6 w-6 " />}
+        displayName="MY"
       />
     </div>
   );
