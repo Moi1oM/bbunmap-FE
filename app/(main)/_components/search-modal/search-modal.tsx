@@ -110,6 +110,7 @@ export const SearchModal = () => {
             placeholder="공간, 시설, 건물을 검색해보세요."
             value={searchText}
             onChange={handleSearchChange}
+            onBlur={(e) => e.preventDefault()}
           />
         </div>
         <div className="w-full h-[1px] bg-[#DFE1E7] mt-3" />
