@@ -1,5 +1,5 @@
 {
-  "background_color": "#ff2b53",
+  "background_color": "#00ff0000",
   "description": "뻔맵-BbunMap for Korea University students",
   "dir": "ltr",
   "display": "standalone",
@@ -11,16 +11,20 @@
   "theme_color": "#ff2b53",
   "icons": [
     {
-      "src": "/logo.svg"
-    },
-    {
-      "src": "https://www.bbunmap.com/main.png",
+      "src": "/pwa/icons/icon-192x192.png",
+      "sizes": "192x192",
       "type": "image/png",
-      "sizes": "1280x1280"
+      "purpose": "any maskable"
     },
     {
-      "src": "/favicon.ico",
-      "type": "image/x-icon"
+      "src": "/pwa/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/pwa/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
   "id": "bbunmap"
