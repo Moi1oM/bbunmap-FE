@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const withPlugins = require("next-compose-plugins");
+const withPWA = require("next-pwa");
 
-module.exports = {
+const config = {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -10,7 +11,16 @@ module.exports = {
 
     return config;
   },
+
   images: {
     domains: ["k.kakaocdn.net", "assets.community.lomography.com"],
   },
 };
+
+const nextConfig = withPWA({
+  dest: "public",
+  disable: false,
+  runtimeCaching: [],
+})(config);
+
+module.exports = nextConfig;
