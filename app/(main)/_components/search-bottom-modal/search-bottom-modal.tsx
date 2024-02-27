@@ -77,9 +77,13 @@ const SearchBottomModal = ({
               !buttonAvailable && "w-full ml-8 mr-8"
             )}
             onClick={() => {
-              router.push(
-                `/b?type=${searchType}&building=${data.buildingName}`
-              );
+              if (buttonAvailable) {
+                router.push(
+                  `/b?type=${searchType}&building=${data.buildingName}`
+                );
+              } else {
+                router.push(`/b/detail?building=${data.buildingName}`);
+              }
             }}
           >
             <span className="text-main text-lg font-semibold">

@@ -86,14 +86,11 @@ export const SearchModal = () => {
   useEffect(() => {
     const currentRef = inputRef.current;
     if (currentRef !== null) {
+      currentRef.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+      });
       currentRef.focus();
     }
-
-    return () => {
-      if (currentRef !== null) {
-        currentRef.blur();
-      }
-    };
   }, []);
 
   return (

@@ -14,7 +14,7 @@ export const FloorFactilities = ({
 }: FloorFacilitiesProps) => {
   return (
     <div className="flex flex-col justify-start mt-4">
-      <span className="font-medium text-xl">{floor}층</span>
+      <span className="font-medium text-xl bg-gray-100 pl-3">{floor}층</span>
       <div className="flex flex-row justify-start items-center flex-wrap">
         {facilities.map((fac) => {
           return (

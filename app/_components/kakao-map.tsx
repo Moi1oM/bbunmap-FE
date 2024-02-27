@@ -67,13 +67,13 @@ const KakaoMap = ({
           <MapMarker
             key={index}
             image={{
-              src:
-                typeof item.facilityNumber !== "undefined"
-                  ? item.facilityNumber >= 0 && item.facilityNumber <= 5
-                    ? `./result-pin/result-pin-${item.facilityNumber}.png`
-                    : `./result-pin/result-pin-5+.png`
-                  : `./black-pin.png`,
-              size: { width: 35, height: 35 },
+              src: "/pin-copy.png",
+              // typeof item.facilityNumber !== "undefined"
+              //   ? item.facilityNumber >= 0 && item.facilityNumber <= 5
+              //     ? `./result-pin/result-pin-${item.facilityNumber}.png`
+              //     : `./result-pin/result-pin-5+.png`
+              //   : `./black-pin.png`,
+              size: { width: 25, height: 35 },
             }}
             position={{ lat: item.lat, lng: item.lng }}
             onClick={() => {
