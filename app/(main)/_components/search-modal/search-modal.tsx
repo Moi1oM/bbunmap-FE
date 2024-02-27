@@ -79,6 +79,27 @@ export const SearchModal = () => {
         },
       ],
     },
+    {
+      type: "편의",
+      nameList: [
+        {
+          koreanName: "식당",
+          englishName: "restaurant",
+        },
+        {
+          koreanName: "카페",
+          englishName: "cafe",
+        },
+        {
+          koreanName: "편의점",
+          englishName: "convi",
+        },
+        {
+          koreanName: "유니스토어",
+          englishName: "unistore",
+        },
+      ],
+    },
   ];
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -98,13 +119,13 @@ export const SearchModal = () => {
       <div className="flex flex-col mt-6">
         <div className="flex flex-row justify-between items-center">
           <ChevronLeft
-            className="w-7 h-7 mr-4 cursor-pointer"
+            className="w-7 h-7 mr-2 ml-3 cursor-pointer"
             onClick={toggleSearchModal}
           />
           <Input
             ref={inputRef}
             type="text"
-            placeholder="공간, 시설, 건물을 검색해보세요."
+            placeholder="건물, 공간, 시설을 검색해보세요."
             value={searchText}
             onChange={handleSearchChange}
             onBlur={(e) => e.preventDefault()}

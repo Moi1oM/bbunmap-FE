@@ -9,6 +9,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "뻔맵-BbunMap",
   description: "뻔맵-BbunMap for Korea University students",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default async function RootLayout({
@@ -27,10 +32,6 @@ export default async function RootLayout({
       <meta
         property="og:description"
         content="뻔맵-BbunMap for Korea University students"
-      />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
       />
       <body className={inter.className}>
         <SessionProvider session={session}>{children}</SessionProvider>

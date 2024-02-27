@@ -18,7 +18,7 @@ const TopAppBar = () => {
       >
         <SearchIcon className="w-4 h-4 mr-3 ml-2" />
         <span className="text-[#A0A4A8] select-none">
-          공간, 시설, 건물을 검색해보세요.
+          건물, 공간, 시설을 검색해보세요.
         </span>
       </div>
       {/* <ProfileButton /> */}
