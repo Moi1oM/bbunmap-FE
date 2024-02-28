@@ -100,90 +100,6 @@ export const SearchModal = () => {
         },
       ],
     },
-    {
-      type: "편의",
-      nameList: [
-        {
-          koreanName: "식당",
-          englishName: "restaurant",
-        },
-        {
-          koreanName: "카페",
-          englishName: "cafe",
-        },
-        {
-          koreanName: "편의점",
-          englishName: "convi",
-        },
-        {
-          koreanName: "유니스토어",
-          englishName: "unistore",
-        },
-      ],
-    },
-    {
-      type: "편의",
-      nameList: [
-        {
-          koreanName: "식당",
-          englishName: "restaurant",
-        },
-        {
-          koreanName: "카페",
-          englishName: "cafe",
-        },
-        {
-          koreanName: "편의점",
-          englishName: "convi",
-        },
-        {
-          koreanName: "유니스토어",
-          englishName: "unistore",
-        },
-      ],
-    },
-    {
-      type: "편의",
-      nameList: [
-        {
-          koreanName: "식당",
-          englishName: "restaurant",
-        },
-        {
-          koreanName: "카페",
-          englishName: "cafe",
-        },
-        {
-          koreanName: "편의점",
-          englishName: "convi",
-        },
-        {
-          koreanName: "유니스토어",
-          englishName: "unistore",
-        },
-      ],
-    },
-    {
-      type: "편의",
-      nameList: [
-        {
-          koreanName: "식당",
-          englishName: "restaurant",
-        },
-        {
-          koreanName: "카페",
-          englishName: "cafe",
-        },
-        {
-          koreanName: "편의점",
-          englishName: "convi",
-        },
-        {
-          koreanName: "유니스토어",
-          englishName: "unistore",
-        },
-      ],
-    },
   ];
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -201,7 +117,7 @@ export const SearchModal = () => {
   return (
     <div className="w-full h-full z-20 fixed top-0 bottom-0 max-w-[450px] select-none bg-white">
       <div className="flex flex-col h-full">
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-row justify-between items-center mt-6">
           <ChevronLeft
             className="w-7 h-7 mr-2 ml-3 cursor-pointer"
             onClick={toggleSearchModal}
