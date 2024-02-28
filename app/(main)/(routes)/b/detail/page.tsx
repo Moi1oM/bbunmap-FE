@@ -26,27 +26,27 @@ const BuildingDetail = () => {
     {
       englishName: "lounge",
       koreanName: "라운지",
-      image: "/facility/MBlounge.png",
+      image: "/facility/lounge.png",
     },
     {
-      koreanName: "정수기",
-      englishName: "waterPurifier",
-      image: "/facility/waterPurifier.png",
-    },
-    {
-      koreanName: "1인실",
-      englishName: "singleRoom",
-      image: "/facility/singleRoom.png",
+      koreanName: "캐럴",
+      englishName: "carol",
+      image: "/facility/carol.png",
     },
     {
       koreanName: "스터디룸",
       englishName: "studyRoom",
-      image: "/facility/studyRoom.png",
+      image: "/facility/studyroom.png",
     },
     {
       koreanName: "카페",
       englishName: "cafe",
       image: "/facility/cafe.png",
+    },
+    {
+      koreanName: "편의",
+      englishName: "convi",
+      image: "/facility/convi.png",
     },
   ];
   const data = {
