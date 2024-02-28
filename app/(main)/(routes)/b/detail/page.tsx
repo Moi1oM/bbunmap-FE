@@ -36,7 +36,7 @@ const BuildingDetail = () => {
     {
       koreanName: "스터디룸",
       englishName: "studyRoom",
-      image: "/facility/studyroom.png",
+      image: "/facility/studyRoom.png",
     },
     {
       koreanName: "카페",
