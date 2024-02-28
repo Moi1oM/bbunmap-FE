@@ -12,7 +12,7 @@ import RecommIconAbled from "@/public/icons/GNB/recomm_abled.svg";
 
 export default function TapBar() {
   return (
-    <div className="flex flex-row justify-evenly items-center shadow-md z-20 fixed bottom-0 w-full max-w-[450px] bg-white pt-1">
+    <div className="flex flex-row justify-evenly items-center shadow-md z-20 fixed bottom-0 pb-6 w-full max-w-[450px] bg-white pt-1">
       <TabBarButton
         title="home"
         iconSelected={<HomeIconAbled className="h-6 w-6" />}
