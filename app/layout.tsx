@@ -15,7 +15,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-}
+};
 
 export default async function RootLayout({
   children,
@@ -34,6 +34,7 @@ export default async function RootLayout({
         property="og:description"
         content="뻔맵-BbunMap for Korea University students"
       />
+      <link rel="manifest" href="/manifest.json" />
       <body className={inter.className}>
         <SessionProvider session={session}>{children}</SessionProvider>
       </body>
