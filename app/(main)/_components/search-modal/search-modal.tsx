@@ -100,6 +100,90 @@ export const SearchModal = () => {
         },
       ],
     },
+    {
+      type: "편의",
+      nameList: [
+        {
+          koreanName: "식당",
+          englishName: "restaurant",
+        },
+        {
+          koreanName: "카페",
+          englishName: "cafe",
+        },
+        {
+          koreanName: "편의점",
+          englishName: "convi",
+        },
+        {
+          koreanName: "유니스토어",
+          englishName: "unistore",
+        },
+      ],
+    },
+    {
+      type: "편의",
+      nameList: [
+        {
+          koreanName: "식당",
+          englishName: "restaurant",
+        },
+        {
+          koreanName: "카페",
+          englishName: "cafe",
+        },
+        {
+          koreanName: "편의점",
+          englishName: "convi",
+        },
+        {
+          koreanName: "유니스토어",
+          englishName: "unistore",
+        },
+      ],
+    },
+    {
+      type: "편의",
+      nameList: [
+        {
+          koreanName: "식당",
+          englishName: "restaurant",
+        },
+        {
+          koreanName: "카페",
+          englishName: "cafe",
+        },
+        {
+          koreanName: "편의점",
+          englishName: "convi",
+        },
+        {
+          koreanName: "유니스토어",
+          englishName: "unistore",
+        },
+      ],
+    },
+    {
+      type: "편의",
+      nameList: [
+        {
+          koreanName: "식당",
+          englishName: "restaurant",
+        },
+        {
+          koreanName: "카페",
+          englishName: "cafe",
+        },
+        {
+          koreanName: "편의점",
+          englishName: "convi",
+        },
+        {
+          koreanName: "유니스토어",
+          englishName: "unistore",
+        },
+      ],
+    },
   ];
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -116,7 +200,7 @@ export const SearchModal = () => {
 
   return (
     <div className="w-full h-full z-20 fixed top-0 bottom-0 max-w-[450px] select-none bg-white">
-      <div className="flex flex-col mt-6">
+      <div className="flex flex-col h-full">
         <div className="flex flex-row justify-between items-center">
           <ChevronLeft
             className="w-7 h-7 mr-2 ml-3 cursor-pointer"
@@ -132,26 +216,29 @@ export const SearchModal = () => {
           />
         </div>
         <div className="w-full h-[1px] bg-[#DFE1E7] mt-3" />
-        {datas.map((data, index) => {
-          const filteredNameList = data.nameList.filter(
-            (name) =>
-              name.koreanName.includes(searchText) ||
-              name.englishName.includes(searchText)
-          );
-
-          if (filteredNameList.length > 0) {
-            return (
-              <NameAndList
-                key={index}
-                name={data.type}
-                nameList={filteredNameList}
-              />
+        <div className="overflow-auto h-full scrollbar-hide">
+          {datas.map((data, index) => {
+            const filteredNameList = data.nameList.filter(
+              (name) =>
+                name.koreanName.includes(searchText) ||
+                name.englishName.includes(searchText)
             );
-          }
 
-          // 필터링 결과가 비어있으면 아무것도 표시하지 않음
-          return null;
-        })}
+            if (filteredNameList.length > 0) {
+              return (
+                <NameAndList
+                  key={index}
+                  name={data.type}
+                  nameList={filteredNameList}
+                />
+              );
+            }
+
+            // 필터링 결과가 비어있으면 아무것도 표시하지 않음
+            return null;
+          })}
+        </div>
+        <div className="my-10 w-full h-[1px]" />
       </div>
     </div>
   );

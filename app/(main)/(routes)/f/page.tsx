@@ -47,7 +47,11 @@ const Facility = () => {
         markerModalEvent={true}
       />
       {isSearchBottomModalOpen && (
-        <SearchBottomModal searchType={type!} buttonNumber={2} />
+        <SearchBottomModal
+          searchType={type!}
+          searchContext={true}
+          searchText={fakeType}
+        />
       )}
     </div>
   );

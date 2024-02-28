@@ -8,11 +8,15 @@ import { useRouter } from "next/navigation";
 interface SearchBottomModalProps {
   searchType: string;
   buttonNumber?: number;
+  searchContext?: boolean;
+  searchText?: string;
 }
 
 const SearchBottomModal = ({
   searchType,
   buttonNumber,
+  searchContext,
+  searchText = "default",
 }: SearchBottomModalProps) => {
   const router = useRouter();
   const { bottomModalSearchBuilding, setSearchBottomModalClose } =
@@ -23,8 +27,8 @@ const SearchBottomModal = ({
     buildingName: bottomModalSearchBuilding,
     // 이 아로는 bulidingName을 이용해서 해당 건물의 정보를 가져올 수 있음
     availableTime: {
-      start: "09:00:00",
-      end: "18:00:00",
+      start: "09:00",
+      end: "18:00",
     },
     facilityList: [
       "알파라운지",
@@ -38,6 +42,10 @@ const SearchBottomModal = ({
     bulidingPic:
       "https://assets.community.lomography.com/be/5540dbb5b3571ef8ecf8ebcc9ff3654bb3a866/1216x1216x2.jpg?auth=dfd8dedf54f05b4c42b9dffddcc5528080edfdec",
   };
+
+  useEffect(() => {
+    console.log(searchText, data.facilityList);
+  }, [data.facilityList, searchText]);
 
   return (
     <div
@@ -67,8 +75,23 @@ const SearchBottomModal = ({
           </div>
         </div>
         <div className="mt-4 text-center">
-          <span className="text-[#1B1D1F]">{data.facilityList.join(", ")}</span>
+          {data.facilityList
+            .sort((a, b) =>
+              a.includes(searchText) && !b.includes(searchText) ? -1 : 1
+            )
+            .map((facility, index) => (
+              <span
+                key={index}
+                className={
+                  facility.includes(searchText) ? "text-main" : "text-[#1B1D1F]"
+                }
+              >
+                {facility}
+                {index < data.facilityList.length - 1 ? ", " : ""}
+              </span>
+            ))}
         </div>
+
         <div className="flex flex-row items-center justify-evenly mt-8">
           <Button
             size="xlg"
@@ -77,7 +100,7 @@ const SearchBottomModal = ({
               !buttonAvailable && "w-full ml-8 mr-8"
             )}
             onClick={() => {
-              if (buttonAvailable) {
+              if (searchContext) {
                 router.push(
                   `/b?type=${searchType}&building=${data.buildingName}`
                 );

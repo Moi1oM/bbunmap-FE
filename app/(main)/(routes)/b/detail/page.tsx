@@ -108,11 +108,11 @@ const BuildingDetail = () => {
         </div>
         <div className="flex flex-col ml-4 mt-4 justify-start">
           <div className="flex flex-row justify-start">
-            <span className="text-main font-bold">평일</span>
+            <span className="text-gray-900 font-bold">평일</span>
             <span className="ml-2 text-textMain">{`${data.time.weekdays.open} ~ ${data.time.weekdays.close}`}</span>
           </div>
           <div className="flex flex-row justify-start">
-            <span className="text-main font-bold">주말</span>
+            <span className="text-gray-900 font-bold">주말</span>
             <span className="ml-2 text-textMain">{`${data.time.weekends.open} ~ ${data.time.weekends.close}`}</span>
           </div>
         </div>

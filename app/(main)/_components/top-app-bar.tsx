@@ -13,7 +13,7 @@ const TopAppBar = () => {
     <div className="max-w-[450px] w-full flex flex-row justify-around items-center absolute top-0 h-18 z-20 bg-transparent mt-2">
       {/* <Heroes /> */}
       <div
-        className="w-full mx-4 bg-white rounded-md cursor-pointer flex flex-row h-9 items-center justify-start shadow-lg"
+        className="w-full mx-4 py-5 bg-white rounded-md cursor-pointer flex flex-row h-9 items-center justify-start shadow-lg"
         onClick={toggleSearchModal}
       >
         <SearchIcon className="w-4 h-4 mr-3 ml-2" />
