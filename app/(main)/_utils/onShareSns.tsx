@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import React, { useCallback } from "react";
+import Share from "@/public/icons/share.svg";
 
 interface ShareData {
   title: string;
@@ -25,8 +26,12 @@ const ShareButton: React.FC<ShareData> = ({ title, url }: ShareData) => {
   }, [title, url]);
 
   return (
-    <Button className="self-center w-4/5" onClick={onShareToSns}>
-      공유하기
+    <Button
+      className="self-center w-4/5 bg-gray-100 flex flex-row items-center justify-center bottom-10 absolute"
+      onClick={onShareToSns}
+    >
+      <Share />
+      <span className="text-black ml-6">공유하기</span>
     </Button>
   );
 };

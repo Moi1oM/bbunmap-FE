@@ -9,15 +9,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-
-import { ChevronLeft } from "lucide-react";
 import {
   redirect,
   usePathname,
   useRouter,
   useSearchParams,
 } from "next/navigation";
-import { useEffect } from "react";
 import ShareButton from "../../../_utils/onShareSns";
 import RouterBar from "@/app/(main)/_components/router-bar";
 
@@ -29,7 +26,6 @@ const Detail = () => {
   const shareString: string | null = params.get("share");
   const share: boolean | null =
     shareString !== null ? shareString.toLowerCase() === "true" : null;
-  const router = useRouter();
   const mainURL = process.env.NEXT_PUBLIC_MAIN_URL;
 
   const shareUrl = `${mainURL}${pathname}?type=${type}&building=${building}&share=true`;
@@ -50,7 +46,7 @@ const Detail = () => {
   };
 
   return (
-    <div className="w-full h-full max-w-[450px] select-none bg-white scrollbar-hide overflow-scroll top-0 left-0 mx-0 my-0">
+    <div className="w-full h-full max-w-[450px] select-none bg-white scrollbar-hide overflow-scroll top-0 left-0 mx-0 my-0 relative">
       <div className="flex flex-col justify-start  mt-8 mb-2 ml-3">
         <RouterBar share={share} />
         <span className="font-mono text-2xl mt-6 ml-3">
