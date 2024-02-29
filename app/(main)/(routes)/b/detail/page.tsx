@@ -154,7 +154,7 @@ const BuildingDetail = () => {
             align: "start",
             loop: true,
           }}
-          className="w-2/3 mt-4 self-center"
+          className="w-full mt-4 self-center"
         >
           <CarouselContent>
             {data.entrances.map((value, index) => (

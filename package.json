@@ -23,6 +23,7 @@
     "clsx": "^2.1.0",
     "embla-carousel-react": "^8.0.0-rc21",
     "framer-motion": "^10.16.16",
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.302.0",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
@@ -45,6 +46,7 @@
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@tanstack/eslint-plugin-query": "^5.17.22",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

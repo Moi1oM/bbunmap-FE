@@ -17,6 +17,27 @@ export const SearchModal = () => {
 
   const datas = [
     {
+      type: "편의",
+      nameList: [
+        {
+          koreanName: "식당",
+          englishName: "restaurant",
+        },
+        {
+          koreanName: "카페",
+          englishName: "cafe",
+        },
+        {
+          koreanName: "편의점",
+          englishName: "convi",
+        },
+        {
+          koreanName: "유니스토어",
+          englishName: "unistore",
+        },
+      ],
+    },
+    {
       type: "공간",
       nameList: [
         {
@@ -32,8 +53,8 @@ export const SearchModal = () => {
           englishName: "sleepRoom",
         },
         {
-          koreanName: "휴게실",
-          englishName: "restRoom",
+          koreanName: "캐럴",
+          englishName: "carol",
         },
         {
           koreanName: "스터디룸",
@@ -57,8 +78,12 @@ export const SearchModal = () => {
           englishName: "printer",
         },
         {
-          koreanName: "콘센트",
-          englishName: "outlet",
+          koreanName: "자동대출반납기",
+          englishName: "autoReturn",
+        },
+        {
+          koreanName: "컴퓨터",
+          englishName: "computer",
         },
         {
           koreanName: "ATM",
@@ -76,27 +101,6 @@ export const SearchModal = () => {
         {
           koreanName: "셔틀버스",
           englishName: "shuttleBus",
-        },
-      ],
-    },
-    {
-      type: "편의",
-      nameList: [
-        {
-          koreanName: "식당",
-          englishName: "restaurant",
-        },
-        {
-          koreanName: "카페",
-          englishName: "cafe",
-        },
-        {
-          koreanName: "편의점",
-          englishName: "convi",
-        },
-        {
-          koreanName: "유니스토어",
-          englishName: "unistore",
         },
       ],
     },
@@ -129,6 +133,7 @@ export const SearchModal = () => {
             value={searchText}
             onChange={handleSearchChange}
             onBlur={(e) => e.preventDefault()}
+            className="mr-4"
           />
         </div>
         <div className="w-full h-[1px] bg-[#DFE1E7] mt-3" />

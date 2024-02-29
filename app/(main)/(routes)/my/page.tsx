@@ -53,9 +53,24 @@ const Reward = () => {
         <div className="bg-gray-200 w-full h-[1px]" />
         <div
           className="flex flex-row justify-start mt-3 mb-3 w-full ml-5 cursor-pointer"
-          onClick={() => router.push("https://www.instagram.com/bbun.map/")}
+          onClick={() =>
+            router.push(
+              "https://www.notion.so/FUN-07e34afb8ae844cd9323b49b913b6971?pvs=4"
+            )
+          }
         >
           <span>뻔맵이 뭐예요?</span>
+        </div>
+        <div className="bg-gray-200 w-full h-[1px]" />
+        <div
+          className="flex flex-row justify-start mt-3 mb-3 w-full ml-5 cursor-pointer"
+          onClick={() =>
+            router.push(
+              "https://nebulasw.notion.site/PWA-1136841d652b4c95a6e5414aa1828418"
+            )
+          }
+        >
+          <span>뻔맵 앱 다운로드 방법</span>
         </div>
         <div className="bg-gray-200 w-full h-[1px]" />
         <div
@@ -67,7 +82,9 @@ const Reward = () => {
         <div className="bg-gray-200 w-full h-[1px] " />
         <div
           className="flex flex-row justify-between mt-3 mb-3 w-full cursor-pointer"
-          onClick={() => router.push("https://www.instagram.com/bbun.map/")}
+          onClick={() =>
+            router.push("https://1lzqaowxugu.typeform.com/to/KzXjlk8L")
+          }
         >
           <span className="ml-3">뻔맵에게 피드백 주기</span>
           <MyCurious />

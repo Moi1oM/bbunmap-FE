@@ -55,14 +55,23 @@ const SearchBottomModal = ({
       )}
     >
       <div className="flex flex-col justify-start">
-        <div className="flex flex-row items-center justify-evenly mt-6">
+        <div className="flex flex-row items-center justify-around mt-6">
           <div className="flex flex-col items-start justify-start">
             <span className="text-3xl text-[#1B1D1F] font-medium">
               {data.buildingName}
             </span>
-            <span className="mt-3 text-[#1B1D1F]">
-              운영시간 {data.availableTime.start} ~ {data.availableTime.end}
-            </span>
+            <div className="flex flex-row justify-start items-center mt-3">
+              <span className="font-bold text-[#1B1D1F]">평일</span>
+              <span className=" ml-4 text-[#1B1D1F]">
+                {data.availableTime.start} ~ {data.availableTime.end}
+              </span>
+            </div>
+            <div className="flex flex-row justify-start items-center mt-1">
+              <span className="font-bold text-[#1B1D1F]">주말</span>
+              <span className=" ml-4 text-[#1B1D1F]">
+                {data.availableTime.start} ~ {data.availableTime.end}
+              </span>
+            </div>
           </div>
           <div className="relative w-24 h-24 rounded-md overflow-hidden">
             <Image

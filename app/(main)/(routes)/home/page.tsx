@@ -62,23 +62,16 @@ export default function Home() {
         center={center}
         bulidingInfoEvent={true}
         bottomSheetEvent={true}
+        markerCurious={true}
       />
       <TopAppBar />
       {isBottomSheetVisible && (
         <BottomSheetWithDynamicImport>
           <BottomSheetTitle route="/b">
             <div>
-              {!session && (
-                <span>
-                  <strong>실시간</strong> 인기 공간 정보
-                </span>
-              )}
-              {session && (
-                <span>
-                  {session?.user?.name}을 위한 <strong>실시간</strong> 내 주변
-                  공간 정보
-                </span>
-              )}
+              <span>
+                <strong>실시간 공간 정보</strong>
+              </span>
             </div>
           </BottomSheetTitle>
           <BottomSheetCard
@@ -89,7 +82,7 @@ export default function Home() {
           />
           <BottomSheetTitle route="/recommand">
             <div>
-              뉴 업뎃 <strong>이동꿀팁</strong>
+              <strong>이동꿀팁</strong>
             </div>
           </BottomSheetTitle>
           <div className="relative w-full mb-4">
@@ -107,7 +100,7 @@ export default function Home() {
           toBuildingName={routeData.toBuildingName}
         /> */}
           <BottomSheetTitle route="/recommand" settingRecommand={true}>
-            <div className="font-semibold">지금 갈만한 곳은</div>
+            <div className="font-bold">지금 갈만한 곳은</div>
           </BottomSheetTitle>
         </BottomSheetWithDynamicImport>
       )}

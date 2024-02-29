@@ -4,8 +4,9 @@ import { useBottomSheetStore } from "@/hooks/useBottomSheetAppearance";
 import { useSearchBottomModal } from "@/hooks/useSearchBottomModal";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
+import Cookies from "js-cookie";
 
 const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY}&autoload=false`;
 
@@ -29,6 +30,7 @@ interface KakaoMapProps {
   markerModalEvent?: boolean;
   bulidingInfoEvent?: boolean;
   bottomSheetEvent?: boolean;
+  markerCurious?: boolean;
 }
 
 const KakaoMap = ({
@@ -37,6 +39,7 @@ const KakaoMap = ({
   markerModalEvent,
   bulidingInfoEvent,
   bottomSheetEvent,
+  markerCurious,
 }: KakaoMapProps) => {
   const router = useRouter();
   const [state, setState] = useState({
@@ -54,6 +57,25 @@ const KakaoMap = ({
     bottomModalSearchBuilding,
   } = useSearchBottomModal();
   const { isBottomSheetVisible, toggleBottomSheet } = useBottomSheetStore(); // Zustand store 사용
+
+  const [markerImage, setMarkerImage] = useState<string>("/icons/tooltip.svg");
+  const [markerWH, setMarkerWH] = useState({ width: 130, height: 74 });
+
+  useEffect(() => {
+    const isFirstVisit = !Cookies.get("visited");
+    const delay = isFirstVisit ? 5000 : 2000;
+    console.log("first? ", isFirstVisit);
+
+    const timer = setTimeout(() => {
+      setMarkerImage("/pin-copy.png");
+      setMarkerWH({ width: 25, height: 35 });
+    }, delay);
+
+    Cookies.set("visited", "true");
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
@@ -67,13 +89,13 @@ const KakaoMap = ({
           <MapMarker
             key={index}
             image={{
-              src: "/pin-copy.png",
+              src: !markerCurious ? "/pin-copy.png" : markerImage,
               // typeof item.facilityNumber !== "undefined"
               //   ? item.facilityNumber >= 0 && item.facilityNumber <= 5
               //     ? `./result-pin/result-pin-${item.facilityNumber}.png`
               //     : `./result-pin/result-pin-5+.png`
               //   : `./black-pin.png`,
-              size: { width: 25, height: 35 },
+              size: !markerCurious ? { width: 25, height: 35 } : markerWH,
             }}
             position={{ lat: item.lat, lng: item.lng }}
             onClick={() => {

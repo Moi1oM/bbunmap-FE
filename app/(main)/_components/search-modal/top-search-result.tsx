@@ -24,7 +24,12 @@ const TopSearchResult = ({ searchKeyword }: TopSearchResultProps) => {
             className="w-7 h-7 mr-2 ml-3 cursor-pointer"
             onClick={() => router.back()}
           />
-          <Input type="text" value={searchKeyword} readOnly={true} />
+          <Input
+            type="text"
+            value={searchKeyword}
+            readOnly={true}
+            className="mr-4"
+          />
         </div>
       </div>
     </div>
