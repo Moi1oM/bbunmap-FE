@@ -162,19 +162,17 @@ const BuildingDetail = () => {
                 <div className="p-1">
                   <Card>
                     <CardContent className="flex aspect-square items-center justify-center">
-                      <div className="relative w-[360px] h-[260px]">
+                      <div className="flex flex-col items-center justify-center relative w-full h-full">
                         <Image
                           src={value.image}
                           sizes="(max-width: 600px) 100vw"
                           fill
-                          className="object-contain"
+                          className="object-cover"
                           alt="Documents"
                         />
-                        <div className="absolute inset-0 flex items-end justify-center">
-                          <span className="w-full text-center">
-                            {value.name}
-                          </span>
-                        </div>
+                        <span className="absolute bottom-0 text-center w-full mb-2 font-bold text-xl text-textMain">
+                          {value.name}
+                        </span>
                       </div>
                     </CardContent>
                   </Card>

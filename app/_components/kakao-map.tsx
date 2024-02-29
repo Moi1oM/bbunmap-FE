@@ -71,7 +71,7 @@ const KakaoMap = ({
       setMarkerWH({ width: 25, height: 35 });
     }, delay);
 
-    Cookies.set("visited", "true");
+    Cookies.set("visited", "true", { expires: 1 / 24 });
 
     return () => clearTimeout(timer);
   }, []);
