@@ -17,27 +17,6 @@ export const SearchModal = () => {
 
   const datas = [
     {
-      type: "편의",
-      nameList: [
-        {
-          koreanName: "식당",
-          englishName: "restaurant",
-        },
-        {
-          koreanName: "카페",
-          englishName: "cafe",
-        },
-        {
-          koreanName: "편의점",
-          englishName: "convi",
-        },
-        {
-          koreanName: "유니스토어",
-          englishName: "unistore",
-        },
-      ],
-    },
-    {
       type: "공간",
       nameList: [
         {
@@ -88,6 +67,27 @@ export const SearchModal = () => {
         {
           koreanName: "ATM",
           englishName: "atm",
+        },
+      ],
+    },
+    {
+      type: "편의",
+      nameList: [
+        {
+          koreanName: "식당",
+          englishName: "restaurant",
+        },
+        {
+          koreanName: "카페",
+          englishName: "cafe",
+        },
+        {
+          koreanName: "편의점",
+          englishName: "convi",
+        },
+        {
+          koreanName: "유니스토어",
+          englishName: "unistore",
         },
       ],
     },
