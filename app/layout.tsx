@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./_components/SessionProvider";
+import { KAKAO_SDK_URL } from "./_components/kakao-map";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +39,7 @@ export default async function RootLayout({
       <link rel="manifest" href="/manifest.json" />
       <body className={inter.className}>
         <SessionProvider session={session}>{children}</SessionProvider>
+        <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
       </body>
     </html>
   );

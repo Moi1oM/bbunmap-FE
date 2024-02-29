@@ -39,8 +39,7 @@ const SearchBottomModal = ({
       "카페",
       "연구실",
     ],
-    bulidingPic:
-      "https://assets.community.lomography.com/be/5540dbb5b3571ef8ecf8ebcc9ff3654bb3a866/1216x1216x2.jpg?auth=dfd8dedf54f05b4c42b9dffddcc5528080edfdec",
+    bulidingPic: "/sample2.jpg",
   };
 
   useEffect(() => {

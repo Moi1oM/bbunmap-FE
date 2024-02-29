@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Cookies from "js-cookie";
 
-const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY}&autoload=false`;
+export const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY}&autoload=false`;
 
 export interface LatLng {
   lat: number;
@@ -78,7 +78,6 @@ const KakaoMap = ({
 
   return (
     <>
-      <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
       <Map
         center={state.center}
         isPanto={state.isPanto}
