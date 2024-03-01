@@ -118,8 +118,12 @@ const Building = () => {
             return (
               <TitleImage
                 key={index}
-                title={`${value.floor}층`}
-                imageSrc={value.image}
+                titleImage={[
+                  {
+                    title: `${value.floor}층`,
+                    imageSrc: value.image,
+                  },
+                ]}
                 titleBackground={true}
               />
             );
