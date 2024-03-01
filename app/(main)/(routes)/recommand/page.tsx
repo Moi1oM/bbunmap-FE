@@ -19,8 +19,12 @@ const Recommand = () => {
   const data = {
     route: [
       {
+        title: "이캠 실내 루트",
+        imageSrc: "/route/route1.png",
+      },
+      {
         title: "문캠 실내 루트",
-        imageSrc: "/sample1.jpg",
+        imageSrc: "/route/route2.png",
       },
     ],
     place: [
@@ -50,26 +54,8 @@ const Recommand = () => {
           }}
         />
       </div>
-      {currentSpace === "move" &&
-        data.route.map((value, index) => {
-          return (
-            <TitleImage
-              key={index}
-              title={value.title}
-              imageSrc={value.imageSrc}
-            />
-          );
-        })}
-      {currentSpace === "place" &&
-        data.place.map((value, index) => {
-          return (
-            <TitleImage
-              key={index}
-              title={value.title}
-              imageSrc={value.imageSrc}
-            />
-          );
-        })}
+      {currentSpace === "move" && <TitleImage titleImage={data.route} />}
+      {currentSpace === "place" && <TitleImage titleImage={data.place} />}
     </div>
   );
 };

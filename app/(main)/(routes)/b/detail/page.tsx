@@ -8,19 +8,46 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface BuildingDetailProps {}
 
+interface FacilityInfo {
+  weekdayAvailable?: string;
+  weekendAvailable?: string;
+  examPeriodAvailable?: string;
+  facilityTypeList?: string[];
+}
+
+const fetchFacilityList = async (): Promise<FacilityInfo> => {
+  const response = await fetch(
+    `https://port-0-bbunmap-be-5mk12alp3wgrdi.sel5.cloudtype.app/facilityList?buildingName=SK미래관`
+  );
+  return response.json();
+};
+
 const BuildingDetail = () => {
+  const [isImgError, setIsImgError] = useState<boolean>(false);
   const router = useRouter();
   const params = useSearchParams();
   const building = params.get("building");
   const shareString: string | null = params.get("share");
   const share: boolean | null =
     shareString !== null ? shareString.toLowerCase() === "true" : null;
+
+  const {
+    isPending: facilityIsPending,
+    error: facilityError,
+    data: facilityData,
+  } = useQuery<FacilityInfo>({
+    queryKey: ["facilityList"],
+    queryFn: fetchFacilityList,
+  });
 
   const facilityList = [
     {
@@ -49,20 +76,9 @@ const BuildingDetail = () => {
       image: "/facility/convi.png",
     },
   ];
-  const data = {
+  const f_data = {
     buildingName: building,
     // 이 아래 빌딩 이름을 기반으로 데이터를 가져와야 합니다.
-    callNumber: "02-3290-0000",
-    time: {
-      weekdays: {
-        open: "09:00",
-        close: "22:00",
-      },
-      weekends: {
-        open: "09:00",
-        close: "22:00",
-      },
-    },
     entrances: [
       {
         name: "정문",
@@ -80,18 +96,31 @@ const BuildingDetail = () => {
     ],
   };
 
+  useEffect(() => {
+    console.log("b detail ", isImgError);
+  }, [isImgError]);
+
   return (
     <div className="w-full h-full max-w-[450px] select-none bg-white scrollbar-hide overflow-scroll top-0 left-0 mx-0 my-0">
       <div className="flex flex-col justify-start">
         <div className="relative w-full">
-          <Image
-            src="/sample1.jpg"
-            alt="building"
-            layout="responsive"
-            width={1920} // 원본 이미지의 너비
-            height={1080} // 원본 이미지의 높이
-            objectFit="cover" // 이미지를 컨테이너에 맞게 조정
-          />
+          {!isImgError ? (
+            <Image
+              src={
+                isImgError
+                  ? "/external/미디어관.jpg"
+                  : `/external/${building}.jpg`
+              }
+              onError={() => setIsImgError(true)}
+              alt="building"
+              layout="responsive"
+              width={1920} // 원본 이미지의 너비
+              height={1080} // 원본 이미지의 높이
+              objectFit="cover" // 이미지를 컨테이너에 맞게 조정
+            />
+          ) : (
+            <div className="w-full h-[20vh] bg-gray-200" />
+          )}
           <ChevronLeft
             className="absolute top-0 left-0 w-7 h-7 mr-4 mt-8 ml-3 cursor-pointer text-white font-bold z-10"
             onClick={() => {
@@ -102,18 +131,22 @@ const BuildingDetail = () => {
               }
             }}
           />
-          <span className="absolute bottom-0 mb-4 ml-3 text-white text-3xl font-semibold z-10">
-            {data.buildingName}
+          <span className="absolute bottom-0 mb-4 ml-3 text-3xl font-semibold z-10 text-white">
+            {building}
           </span>
         </div>
         <div className="flex flex-col ml-4 mt-4 justify-start">
           <div className="flex flex-row justify-start">
             <span className="text-gray-900 font-bold">평일</span>
-            <span className="ml-2 text-textMain">{`${data.time.weekdays.open} ~ ${data.time.weekdays.close}`}</span>
+            <span className="ml-2 text-textMain">
+              {facilityData?.weekdayAvailable ?? "수집된 정보 없음"}
+            </span>
           </div>
           <div className="flex flex-row justify-start">
             <span className="text-gray-900 font-bold">주말</span>
-            <span className="ml-2 text-textMain">{`${data.time.weekends.open} ~ ${data.time.weekends.close}`}</span>
+            <span className="ml-2 text-textMain">
+              {facilityData?.weekendAvailable ?? "수집된 정보 없음"}
+            </span>
           </div>
         </div>
         <div className="w-full h-[1px] bg-[#DFE1E7] mt-3" />
@@ -157,7 +190,7 @@ const BuildingDetail = () => {
           className="w-full mt-4 self-center"
         >
           <CarouselContent>
-            {data.entrances.map((value, index) => (
+            {f_data.entrances.map((value, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
                   <Card>
@@ -183,7 +216,7 @@ const BuildingDetail = () => {
         </Carousel>
         <span className="mt-8 font-bold text-xl ml-4">이용 특성</span>
         <div className="flex flex-col ml-4 mt-2">
-          {data.properties.map((value, index) => (
+          {f_data.properties.map((value, index) => (
             <span key={index} className="text-textMain">
               {value}
             </span>

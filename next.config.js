@@ -14,7 +14,7 @@ const config = {
   },
 
   images: {
-    domains: ["k.kakaocdn.net", "assets.community.lomography.com"],
+    domains: ["k.kakaocdn.net", "localhost"],
   },
 };
 

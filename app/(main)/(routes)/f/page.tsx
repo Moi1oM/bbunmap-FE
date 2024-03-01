@@ -25,17 +25,17 @@ const Facility = () => {
   const facilityInfos: BuildingFacilityInfo[] = [
     {
       lat: 37.5845688,
-      lng: 127.0265505,
+      lon: 127.0265505,
       name: "과학도서관",
       facilityNumber: 3,
     },
     {
       lat: 37.58669797,
-      lng: 127.03110737,
+      lon: 127.03110737,
       name: "미디어관",
       facilityNumber: 2,
     },
-    { lat: 37.58948623, lng: 127.03228041, name: "본관", facilityNumber: 0 },
+    { lat: 37.58948623, lon: 127.03228041, name: "본관", facilityNumber: 0 },
   ];
 
   return (
@@ -43,7 +43,7 @@ const Facility = () => {
       <TopSearchResult searchKeyword={fakeType} />
       <KakaoMap
         markers={facilityInfos}
-        center={{ lat: 37.58706787265499, lng: 127.02916578491909 }}
+        center={{ lat: 37.58706787265499, lon: 127.02916578491909 }}
         markerModalEvent={true}
       />
       {isSearchBottomModalOpen && (

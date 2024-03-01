@@ -3,7 +3,6 @@
 import { useBottomSheetStore } from "@/hooks/useBottomSheetAppearance";
 import { useSearchBottomModal } from "@/hooks/useSearchBottomModal";
 import { useRouter } from "next/navigation";
-import Script from "next/script";
 import { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Cookies from "js-cookie";
@@ -12,7 +11,7 @@ export const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.e
 
 export interface LatLng {
   lat: number;
-  lng: number;
+  lon: number;
 }
 
 export interface BuildingInfo extends LatLng {
@@ -24,7 +23,7 @@ export interface BuildingFacilityInfo extends BuildingInfo {
 }
 
 interface KakaoMapProps {
-  markers: BuildingFacilityInfo[];
+  markers?: BuildingFacilityInfo[];
   markersImage?: string;
   center: LatLng;
   markerModalEvent?: boolean;
@@ -44,7 +43,7 @@ const KakaoMap = ({
   const router = useRouter();
   const [state, setState] = useState({
     // 지도의 초기 위치
-    center: { lat: center.lat, lng: center.lng },
+    center: { lat: center.lat, lng: center.lon },
     // 지도 위치 변경시 panto를 이용할지에 대해서 정의
     isPanto: true,
     level: 4,
@@ -56,7 +55,12 @@ const KakaoMap = ({
     setSearchBottomModalClose,
     bottomModalSearchBuilding,
   } = useSearchBottomModal();
-  const { isBottomSheetVisible, toggleBottomSheet } = useBottomSheetStore(); // Zustand store 사용
+  const {
+    isBottomSheetVisible,
+    toggleBottomSheet,
+    closeBottomSheet,
+    openBottomSheet,
+  } = useBottomSheetStore(); // Zustand store 사용
 
   const [markerImage, setMarkerImage] = useState<string>("/icons/tooltip.svg");
   const [markerWH, setMarkerWH] = useState({ width: 130, height: 74 });
@@ -83,8 +87,14 @@ const KakaoMap = ({
         isPanto={state.isPanto}
         style={{ width: "100%", height: "100%" }}
         level={state.level}
+        // onIdle={() => {
+        //   if (!isBottomSheetVisible) {
+        //     toggleBottomSheet();
+        //     setSearchBottomModalClose();
+        //   }
+        // }}
       >
-        {markers.map((item, index) => (
+        {markers?.map((item, index) => (
           <MapMarker
             key={index}
             image={{
@@ -96,31 +106,39 @@ const KakaoMap = ({
               //   : `./black-pin.png`,
               size: !markerCurious ? { width: 25, height: 35 } : markerWH,
             }}
-            position={{ lat: item.lat, lng: item.lng }}
+            position={{ lat: item.lat, lng: item.lon }}
             onClick={() => {
               setState({
-                center: { lat: item.lat, lng: item.lng },
+                center: { lat: item.lat, lng: item.lon },
                 level: 4,
                 isPanto: true,
               });
-              if (markerModalEvent) {
+              if (markerModalEvent || bottomSheetEvent) {
                 if (
                   isSearchBottomModalOpen &&
                   item.name === bottomModalSearchBuilding
                 ) {
                   setSearchBottomModalClose();
                   setBottomModalSearchBuilding("");
+                  if (bottomSheetEvent) {
+                    openBottomSheet();
+                  }
+                } else if (
+                  isSearchBottomModalOpen &&
+                  item.name !== bottomModalSearchBuilding
+                ) {
+                  setBottomModalSearchBuilding(item.name!);
+                  setSearchBottomModalOpen();
+                  if (bottomSheetEvent) {
+                    closeBottomSheet();
+                  }
                 } else {
                   setSearchBottomModalOpen();
                   setBottomModalSearchBuilding(item.name!);
+                  if (bottomSheetEvent) {
+                    closeBottomSheet();
+                  }
                 }
-              }
-              if (bulidingInfoEvent) {
-                // router.push(`/b/detail?building=${item.name}`);
-              }
-              if (bottomSheetEvent) {
-                setBottomModalSearchBuilding(item.name!);
-                toggleBottomSheet();
               }
             }}
           />

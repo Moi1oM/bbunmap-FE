@@ -5,6 +5,7 @@ type BottomSheetStore = {
   isBottomSheetVisible: boolean;
   toggleBottomSheet: () => void;
   openBottomSheet: () => void;
+  closeBottomSheet: () => void;
 };
 
 export const useBottomSheetStore = create<BottomSheetStore>((set) => ({
@@ -12,4 +13,5 @@ export const useBottomSheetStore = create<BottomSheetStore>((set) => ({
   toggleBottomSheet: () =>
     set((state) => ({ isBottomSheetVisible: !state.isBottomSheetVisible })),
   openBottomSheet: () => set((state) => ({ isBottomSheetVisible: true })),
+  closeBottomSheet: () => set((state) => ({ isBottomSheetVisible: false })),
 }));
