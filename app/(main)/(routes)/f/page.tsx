@@ -10,6 +10,7 @@ import { useSearchBottomModal } from "@/hooks/useSearchBottomModal";
 import SearchBottomModal from "../../_components/search-bottom-modal/search-bottom-modal";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 
 type BuildingNum = {
   buildingName: string;
@@ -36,6 +37,7 @@ const fetchBuildingNums = async (facName: string, entity: boolean) => {
 };
 
 const Facility = () => {
+  const router = useRouter();
   const params = useSearchParams();
   const type = params.get("type") || "lounge";
   const entity = params.get("entity") === "true";
@@ -48,6 +50,10 @@ const Facility = () => {
     queryKey: ["facilityNumList", type],
     queryFn: () => fetchBuildingNums(type, entity),
   });
+
+  if (facilityData && facilityData?.length === 1) {
+    router.push(`/b?type=${type}&building=${facilityData[0].buildingName}`);
+  }
 
   const {
     setSearchBottomModalOpen,
