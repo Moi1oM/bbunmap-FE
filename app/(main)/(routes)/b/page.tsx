@@ -76,10 +76,6 @@ const Building = () => {
     queryFn: () => fetchBuildingFacilities(buildingName),
   });
 
-  useEffect(() => {
-    console.log("abbps", facilityData);
-  }, [facilityData]);
-
   const facilitiesTypes = [
     "lounge",
     "readingRoom",
@@ -154,6 +150,8 @@ const Building = () => {
                 floor={buildingInfo.floor}
                 facilities={buildingInfo.facilities}
                 key={`${buildingInfo.floor} ${buildingName}`}
+                urlType={urlType}
+                facFloor={buildingInfo.floor}
               />
             );
           })}

@@ -6,6 +6,8 @@ interface ImageTitleDescriptionProps {
   description: string;
   image: string;
   buildingName: string;
+  urlType: string;
+  facFloor: string;
 }
 
 export const ImageTitleDescription = ({
@@ -13,13 +15,17 @@ export const ImageTitleDescription = ({
   description,
   image,
   buildingName,
+  urlType,
+  facFloor,
 }: ImageTitleDescriptionProps) => {
   const router = useRouter();
   return (
     <div
       className="flex-col flex items-start justify-start max-w-[200px] overflow-hidden cursor-pointer mt-4 mr-3"
       onClick={() => {
-        router.push(`f/detail?building=${buildingName}&type=${title}`);
+        router.push(
+          `f/detail?building=${buildingName}&facName=${title}&type=${urlType}&facFloor=${facFloor}`
+        );
       }}
     >
       <div className="relative w-[167px] h-[120px]">

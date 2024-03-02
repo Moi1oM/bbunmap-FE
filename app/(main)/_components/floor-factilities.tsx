@@ -6,6 +6,8 @@ interface FloorFacilitiesProps {
   facilities: Facility[];
   buildingName: string;
   buildInfo?: BuildingInfo;
+  urlType: string;
+  facFloor: string;
 }
 
 export const FloorFactilities = ({
@@ -13,6 +15,8 @@ export const FloorFactilities = ({
   facilities,
   buildingName,
   buildInfo,
+  urlType,
+  facFloor,
 }: FloorFacilitiesProps) => {
   return (
     <div className="flex flex-col justify-start mt-4">
@@ -26,6 +30,8 @@ export const FloorFactilities = ({
               description={fac.type}
               buildingName={buildingName}
               image={fac.image_src}
+              urlType={urlType}
+              facFloor={facFloor}
             />
           );
         })}
