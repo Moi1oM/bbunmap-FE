@@ -29,8 +29,8 @@ const Recommand = () => {
     ],
     place: [
       {
-        title: "문캠 실내 공간",
-        imageSrc: "/sample1.jpg",
+        title: "애기능 생활관 학식",
+        imageSrc: "/recommand/애기능생활관_학식.png",
       },
     ],
   };
