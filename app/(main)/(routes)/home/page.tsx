@@ -98,7 +98,7 @@ export default function Home() {
           </BottomSheetTitle>
           <div className="relative w-full mb-4">
             <Image
-              src={"/sample1.jpg"}
+              src={"/route/route1.png"}
               alt="route Image"
               layout="responsive"
               width={1920} // 원본 이미지의 너비
