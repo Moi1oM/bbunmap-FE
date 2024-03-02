@@ -18,6 +18,7 @@ const TitleImage = ({
   titleBackground = false,
 }: TitleImageProps) => {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+  const [imgAlt, setImgAlt] = useState<boolean>(false);
 
   return (
     <div
@@ -36,18 +37,27 @@ const TitleImage = ({
           >
             {value.title}
           </span>
-          {!imageLoaded && <Skeleton className="w-[350px] h-[40vh]" />}
-          <div className="relative w-full mt-3">
-            <Image
-              src={value.imageSrc}
-              alt="floorMapImage"
-              layout="responsive"
-              width={1920} // 원본 이미지의 너비
-              height={1080} // 원본 이미지의 높이
-              objectFit="cover"
-              onLoad={() => setImageLoaded(true)}
-            />
-          </div>
+
+          {/* imgAlt가 false이고 imageLoaded가 false일 때만 Skeleton을 보여줍니다 */}
+          {!imgAlt && !imageLoaded && (
+            <Skeleton className="w-[350px] h-[40vh]" />
+          )}
+
+          {/* imgAlt가 false일 때만 이미지를 보여줍니다 */}
+          {!imgAlt && (
+            <div className="relative w-full mt-3">
+              <Image
+                src={value.imageSrc}
+                alt="floorMapImage"
+                layout="responsive"
+                width={1920} // 원본 이미지의 너비
+                height={1080} // 원본 이미지의 높이
+                objectFit="cover"
+                onLoad={() => setImageLoaded(true)}
+                onError={() => setImgAlt(true)}
+              />
+            </div>
+          )}
         </div>
       ))}
     </div>

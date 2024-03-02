@@ -102,7 +102,7 @@ const Building = () => {
           facilities: [],
           floorMap: {
             floor: buildingInfo.floor,
-            image: `/floorMap/${buildingInfo.buildingName}/${buildingInfo.floor}층/${buildingInfo.buildingName}_${buildingInfo.floor}층.png`,
+            image: `/floorMap/${buildingInfo.buildingName}/${buildingInfo.floor}/${urlType}.png`,
           },
         };
       }
