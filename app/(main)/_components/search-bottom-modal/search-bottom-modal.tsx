@@ -1,5 +1,5 @@
 import { useSearchBottomModal } from "@/hooks/useSearchBottomModal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -38,6 +38,7 @@ const SearchBottomModal = ({
   const { bottomModalSearchBuilding, setSearchBottomModalClose } =
     useSearchBottomModal();
   const buttonAvailable = buttonNumber !== undefined && buttonNumber >= 2;
+  const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false);
 
   const { isPending, error, data } = useQuery<reponseType>({
     queryKey: ["buildingData", bottomModalSearchBuilding],
@@ -79,11 +80,21 @@ const SearchBottomModal = ({
           </div>
           <div className="relative w-24 h-24 rounded-md overflow-hidden">
             <Image
-              src={"/sample2.jpg"}
+              src={
+                isImgLoaded
+                  ? `/external/${bottomModalSearchBuilding}.jpg`
+                  : "/sample2.jpg"
+              }
               sizes="(max-width: 600px) 100vw"
               fill
-              className="object-contain"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
               alt="Documents"
+              onLoad={() => setIsImgLoaded(true)}
+              onError={() => setIsImgLoaded(false)}
             />
           </div>
         </div>
