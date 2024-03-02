@@ -5,6 +5,7 @@ import { useSearchModal } from "@/hooks/useSearchModal";
 import { ChevronLeft } from "lucide-react";
 import { NameAndList } from "./name-and-list";
 import { SetStateAction, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export const SearchModal = () => {
   const { isSearchModalOpen, toggleSearchModal } = useSearchModal();
@@ -117,6 +118,7 @@ export const SearchModal = () => {
       currentRef.focus();
     }
   }, []);
+  let isEmpty = true;
 
   return (
     <div className="w-full h-full z-20 fixed top-0 bottom-0 max-w-[450px] select-none bg-white">
@@ -137,6 +139,7 @@ export const SearchModal = () => {
           />
         </div>
         <div className="w-full h-[1px] bg-[#DFE1E7] mt-3" />
+
         <div className="overflow-auto h-full scrollbar-hide">
           {datas.map((data, index) => {
             const filteredNameList = data.nameList.filter(
@@ -146,6 +149,7 @@ export const SearchModal = () => {
             );
 
             if (filteredNameList.length > 0) {
+              isEmpty = false;
               return (
                 <NameAndList
                   key={index}
@@ -155,10 +159,25 @@ export const SearchModal = () => {
               );
             }
 
-            // 필터링 결과가 비어있으면 아무것도 표시하지 않음
+            // 필터링 결과가 비어있을 때
             return null;
           })}
+          {/* 검색 결과 없을 때 */}
+          {isEmpty && (
+            <div className="flex flex-col justify-start items-center">
+              <div className="relative w-full h-[60vh]">
+                <Image
+                  src="/no-result-search-image.png"
+                  fill
+                  className="object-contain"
+                  alt="No Results"
+                />
+              </div>
+              <span className="text-lg">검색어를 확인해주세요!</span>
+            </div>
+          )}
         </div>
+
         <div className="my-10 w-full h-[1px]" />
       </div>
     </div>

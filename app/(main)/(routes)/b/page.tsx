@@ -93,8 +93,6 @@ const Building = () => {
 
   if (facilityIsPending) return <FacSkeleton />;
 
-  console.log("bef", facilityData);
-
   const groupedFacilities = facilityData?.reduce(
     (acc: any, buildingInfo: BuildingInfo) => {
       if (!acc[buildingInfo.floor]) {
@@ -115,12 +113,14 @@ const Building = () => {
             acc[buildingInfo.floor].facilities.push({
               type: fac.type,
               name: getFacilityName(type, fac),
-              // image_src: fac.picFile,
-              image_src: "/sample1.jpg",
+              image_src: `/fac-img/${fac.buildingName}/${
+                buildingInfo.floor
+              }/${fac.picFile.split(",")[0].trim()}.jpg`,
             });
           }
         });
       });
+      console.log("abps", acc);
       return acc;
     },
     {}

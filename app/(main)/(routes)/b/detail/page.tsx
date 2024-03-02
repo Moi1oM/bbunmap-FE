@@ -23,6 +23,7 @@ interface FacilityInfo {
   weekendAvailable?: string;
   examPeriodAvailable?: string;
   facilityTypeList?: string[];
+  placeExplain?: string;
 }
 
 const fetchFacilityList = async (
@@ -82,16 +83,6 @@ const BuildingDetail = () => {
   const f_data = {
     buildingName: building,
     // 이 아래 빌딩 이름을 기반으로 데이터를 가져와야 합니다.
-    entrances: [
-      {
-        name: "정문",
-        image: "/sample1.jpg",
-      },
-      {
-        name: "후문",
-        image: "/sample2.jpg",
-      },
-    ],
     properties: [
       "2020년에 지어져 시설이 깨끗하다.",
       "1층에는 전시, 부스 등을 진행하는 공간이 있고 강당이 있다.",
@@ -219,15 +210,22 @@ const BuildingDetail = () => {
             </CarouselContent>
           </Carousel>
         ) : (
-          <div className="self-center mt-5">수집된 정보가 없습니다.</div>
+          <div className="flex flex-col justify-start items-center">
+            <div className="relative w-full h-[35vh] mt-5">
+              <Image
+                src="/no-result-detail-image.png"
+                sizes="(max-width: 600px) 100vw"
+                fill
+                className="object-contain"
+                alt="Documents"
+              />
+            </div>
+            <span className="font-bold">수집된 정보가 없습니다!</span>
+          </div>
         )}
         <span className="mt-8 font-bold text-xl ml-4">이용 특성</span>
         <div className="flex flex-col ml-4 mt-2">
-          {f_data.properties.map((value, index) => (
-            <span key={index} className="text-textMain">
-              {value}
-            </span>
-          ))}
+          <span>{facData?.placeExplain ?? "수집된 정보가 없습니다."}</span>
         </div>
         <div className="w-full h-[1px] bg-white mt-20" />
       </div>
