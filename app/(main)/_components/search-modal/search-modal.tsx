@@ -150,11 +150,28 @@ export const SearchModal = () => {
 
             if (filteredNameList.length > 0) {
               isEmpty = false;
+
+              // entity 값을 미리 계산합니다.
+              const entity = filteredNameList.some((filteredName) =>
+                [
+                  "cafe",
+                  "convenience",
+                  "lounge",
+                  "readingRoom",
+                  "restaurant",
+                  "restRoom",
+                  "stationery",
+                  "studyRoom",
+                  "sleepingRoom",
+                ].includes(filteredName.englishName)
+              );
+
               return (
                 <NameAndList
                   key={index}
                   name={data.type}
                   nameList={filteredNameList}
+                  entity={entity}
                 />
               );
             }
@@ -162,6 +179,7 @@ export const SearchModal = () => {
             // 필터링 결과가 비어있을 때
             return null;
           })}
+
           {/* 검색 결과 없을 때 */}
           {isEmpty && (
             <div className="flex flex-col justify-start items-center">

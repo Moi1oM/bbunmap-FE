@@ -98,6 +98,7 @@ const Detail = () => {
         >
           <CarouselContent>
             {images?.map((value, index) => {
+              console.log(`/fac-img/${building}/${facFloor}/${value}.jpg`);
               return (
                 <CarouselItem key={index}>
                   <div className="p-1">

@@ -28,6 +28,45 @@ const fetchBuildingData = async (buildingName: string) => {
   return response.json();
 };
 
+type EnglishName =
+  | "lounge"
+  | "readingRoom"
+  | "sleepRoom"
+  | "carol"
+  | "studyRoom"
+  | "waterPurifier"
+  | "vendingMachine"
+  | "printer"
+  | "autoReturn"
+  | "computer"
+  | "atm"
+  | "restaurant"
+  | "cafe"
+  | "convi"
+  | "unistore"
+  | "smokingArea"
+  | "shuttleBus";
+
+const nameMap: Record<EnglishName, string> = {
+  lounge: "라운지",
+  readingRoom: "열람실",
+  sleepRoom: "수면실",
+  carol: "캐럴",
+  studyRoom: "스터디룸",
+  waterPurifier: "정수기",
+  vendingMachine: "자판기",
+  printer: "프린터기",
+  autoReturn: "자동대출반납기",
+  computer: "컴퓨터",
+  atm: "ATM",
+  restaurant: "식당",
+  cafe: "카페",
+  convi: "편의점",
+  unistore: "유니스토어",
+  smokingArea: "흡연구역",
+  shuttleBus: "셔틀버스",
+};
+
 const SearchBottomModal = ({
   searchType,
   buttonNumber,
@@ -51,6 +90,8 @@ const SearchBottomModal = ({
 
   if (isPending) return <SearchBottomModalSkeleton />;
   if (error) return "An error has occurred: " + error.message;
+
+  const koreanSearchText = nameMap[searchText as EnglishName];
 
   return (
     <div
@@ -102,13 +143,15 @@ const SearchBottomModal = ({
           {data?.facilityTypeList && data.facilityTypeList.length > 0 ? (
             data.facilityTypeList
               .sort((a, b) =>
-                a.includes(searchText) && !b.includes(searchText) ? -1 : 1
+                a.includes(koreanSearchText) && !b.includes(koreanSearchText)
+                  ? -1
+                  : 1
               )
               .map((facility, index) => (
                 <span
                   key={index}
                   className={cn(
-                    facility.includes(searchText)
+                    facility.includes(koreanSearchText)
                       ? "text-main"
                       : "text-[#1B1D1F]",
                     "overflow-hidden whitespace-nowrap overflow-ellipsis"

@@ -6,9 +6,10 @@ import { usePathname, useRouter } from "next/navigation";
 interface NameAndListProps {
   name: string;
   nameList: any[];
+  entity: boolean;
 }
 
-export const NameAndList = ({ name, nameList }: NameAndListProps) => {
+export const NameAndList = ({ name, nameList, entity }: NameAndListProps) => {
   const router = useRouter();
 
   return (
@@ -20,7 +21,9 @@ export const NameAndList = ({ name, nameList }: NameAndListProps) => {
             <Button
               key={index}
               className="bg-[#F5F6F6] text-[#74787D] mr-[7px] mb-4"
-              onClick={() => router.push(`/f?type=${name!.englishName}`)}
+              onClick={() =>
+                router.push(`/f?type=${name!.englishName}&entity=${entity}`)
+              }
             >
               {name!.koreanName}
             </Button>
