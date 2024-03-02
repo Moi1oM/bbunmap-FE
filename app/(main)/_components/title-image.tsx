@@ -40,7 +40,7 @@ const TitleImage = ({
           <div className="relative w-full mt-3">
             <Image
               src={value.imageSrc}
-              alt="route Image"
+              alt="floorMapImage"
               layout="responsive"
               width={1920} // 원본 이미지의 너비
               height={1080} // 원본 이미지의 높이

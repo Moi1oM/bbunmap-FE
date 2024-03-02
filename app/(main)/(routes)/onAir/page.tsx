@@ -16,7 +16,7 @@ interface respondType {
 
 const postCount = async (): Promise<any> => {
   const response = await fetch(
-    "https://port-0-bbunmap-be-5mk12alp3wgrdi.sel5.cloudtype.app/count",
+    `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/count`,
     {
       method: "POST",
     }
@@ -30,7 +30,7 @@ const OnAir = () => {
   const { isPending, error, data } = useQuery<respondType>({
     queryKey: ["repoData"],
     queryFn: () =>
-      fetch("https://port-0-bbunmap-be-5mk12alp3wgrdi.sel5.cloudtype.app/count")
+      fetch(`${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/count`)
         .then((res) => {
           return res.json();
         })
@@ -42,21 +42,19 @@ const OnAir = () => {
 
   const fetchCount = async (): Promise<respondType> => {
     const response = await fetch(
-      "https://port-0-bbunmap-be-5mk12alp3wgrdi.sel5.cloudtype.app/count"
+      `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/count`
     );
     const resmb = await response.json();
+    console.log("abps", resmb);
     setCount(resmb.num);
     return resmb;
   };
 
   const addMutation = useMutation({
     mutationFn: () =>
-      fetch(
-        "https://port-0-bbunmap-be-5mk12alp3wgrdi.sel5.cloudtype.app/count",
-        {
-          method: "POST",
-        }
-      ),
+      fetch("${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/count", {
+        method: "POST",
+      }),
     onSuccess: () => {
       fetchCount();
       toast.success("투표가 성공적으로 완료되었습니다");

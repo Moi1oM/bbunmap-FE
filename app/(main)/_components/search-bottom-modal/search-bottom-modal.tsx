@@ -23,7 +23,7 @@ type reponseType = {
 
 const fetchBuildingData = async (buildingName: string) => {
   const response = await fetch(
-    `https://port-0-bbunmap-be-5mk12alp3wgrdi.sel5.cloudtype.app/facilityList?buildingName=${buildingName}`
+    `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/facilityList?buildingName=${buildingName}`
   );
   return response.json();
 };

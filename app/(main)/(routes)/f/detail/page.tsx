@@ -17,11 +17,13 @@ import {
 } from "next/navigation";
 import ShareButton from "../../../_utils/onShareSns";
 import RouterBar from "@/app/(main)/_components/router-bar";
+import { Facility } from "@/app/_const/facility";
 
 const Detail = () => {
   const params = useSearchParams();
   const pathname = usePathname();
   const type = params.get("type");
+  const facility: Facility = type as Facility;
   const building = params.get("building");
   const shareString: string | null = params.get("share");
   const share: boolean | null =

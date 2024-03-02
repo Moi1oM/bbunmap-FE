@@ -31,7 +31,9 @@ export const ImageTitleDescription = ({
           alt="Documents"
         />
       </div>
-      <span className="text-xl font-bold">{title}</span>
+      <span className="text-xl font-bold overflow-hidden whitespace-nowrap text-overflow-ellipsis">
+        {title}
+      </span>
       <span className="text-base font-semibold text-[#A0A4A8]">
         {description}
       </span>

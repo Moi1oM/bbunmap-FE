@@ -79,6 +79,15 @@ const Reward = () => {
         >
           <span>뻔맵 인스타그램</span>
         </div>
+        <div className="bg-gray-200 w-full h-[1px]" />
+        <div
+          className="flex flex-row justify-start mt-3 mb-3 w-full ml-5 cursor-pointer"
+          onClick={() =>
+            router.push("https://1lzqaowxugu.typeform.com/to/FGD29dHH")
+          }
+        >
+          <span>뻔맵에게 정보 제보하기</span>
+        </div>
         <div className="bg-gray-200 w-full h-[1px] " />
         <div
           className="flex flex-row justify-between mt-3 mb-3 w-full cursor-pointer"

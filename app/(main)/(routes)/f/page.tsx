@@ -27,15 +27,13 @@ const Facility = () => {
       lat: 37.5845688,
       lon: 127.0265505,
       name: "과학도서관",
-      facilityNumber: 3,
     },
     {
       lat: 37.58669797,
       lon: 127.03110737,
       name: "미디어관",
-      facilityNumber: 2,
     },
-    { lat: 37.58948623, lon: 127.03228041, name: "본관", facilityNumber: 0 },
+    { lat: 37.58948623, lon: 127.03228041, name: "본관" },
   ];
 
   return (

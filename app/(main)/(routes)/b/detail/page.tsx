@@ -1,5 +1,6 @@
 "use client";
 
+import { EntranceNum } from "@/app/_const/entrance";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -24,9 +25,11 @@ interface FacilityInfo {
   facilityTypeList?: string[];
 }
 
-const fetchFacilityList = async (): Promise<FacilityInfo> => {
+const fetchFacilityList = async (
+  buildingName: string
+): Promise<FacilityInfo> => {
   const response = await fetch(
-    `https://port-0-bbunmap-be-5mk12alp3wgrdi.sel5.cloudtype.app/facilityList?buildingName=SK미래관`
+    `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/facilityList?buildingName=${buildingName}`
   );
   return response.json();
 };
@@ -35,7 +38,7 @@ const BuildingDetail = () => {
   const [isImgError, setIsImgError] = useState<boolean>(false);
   const router = useRouter();
   const params = useSearchParams();
-  const building = params.get("building");
+  const building: string = params.get("building") || "default";
   const shareString: string | null = params.get("share");
   const share: boolean | null =
     shareString !== null ? shareString.toLowerCase() === "true" : null;
@@ -43,10 +46,10 @@ const BuildingDetail = () => {
   const {
     isPending: facilityIsPending,
     error: facilityError,
-    data: facilityData,
+    data: facData,
   } = useQuery<FacilityInfo>({
-    queryKey: ["facilityList"],
-    queryFn: fetchFacilityList,
+    queryKey: ["facilityDetailList", building],
+    queryFn: () => fetchFacilityList(building!),
   });
 
   const facilityList = [
@@ -139,13 +142,13 @@ const BuildingDetail = () => {
           <div className="flex flex-row justify-start">
             <span className="text-gray-900 font-bold">평일</span>
             <span className="ml-2 text-textMain">
-              {facilityData?.weekdayAvailable ?? "수집된 정보 없음"}
+              {facData?.weekdayAvailable ?? "수집된 정보 없음"}
             </span>
           </div>
           <div className="flex flex-row justify-start">
             <span className="text-gray-900 font-bold">주말</span>
             <span className="ml-2 text-textMain">
-              {facilityData?.weekendAvailable ?? "수집된 정보 없음"}
+              {facData?.weekendAvailable ?? "수집된 정보 없음"}
             </span>
           </div>
         </div>
@@ -160,7 +163,7 @@ const BuildingDetail = () => {
                   key={index}
                   onClick={() => {
                     router.push(
-                      `/f/detail?type=${facility.englishName}&building=${building}`
+                      `/b?type=${facility.englishName}&building=${building}`
                     );
                   }}
                 >
@@ -182,38 +185,42 @@ const BuildingDetail = () => {
         </div>
         <div className="w-full h-[1px] bg-[#DFE1E7] mt-3" />
         <span className="mt-8  font-bold text-xl ml-4">입구 정보</span>
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full mt-4 self-center"
-        >
-          <CarouselContent>
-            {f_data.entrances.map((value, index) => (
-              <CarouselItem key={index}>
-                <div className="p-1">
-                  <Card>
-                    <CardContent className="flex aspect-square items-center justify-center">
-                      <div className="flex flex-col items-center justify-center relative w-full h-full">
-                        <Image
-                          src={value.image}
-                          sizes="(max-width: 600px) 100vw"
-                          fill
-                          className="object-cover"
-                          alt="Documents"
-                        />
-                        <span className="absolute bottom-0 text-center w-full mb-2 font-bold text-xl text-textMain">
-                          {value.name}
-                        </span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+        {EntranceNum[building] ? (
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full mt-4 self-center"
+          >
+            <CarouselContent>
+              {Array.from({ length: EntranceNum[building] }, (_, index) => (
+                <CarouselItem key={index}>
+                  <div className="p-1">
+                    <Card>
+                      <CardContent className="flex aspect-square items-center justify-center">
+                        <div className="flex flex-col items-center justify-center relative w-full h-full">
+                          <Image
+                            src={`/entrance/${building}/${index + 1}.jpg`}
+                            sizes="(max-width: 600px) 100vw"
+                            fill
+                            className="object-cover"
+                            alt={`${building}${index}`}
+                          />
+                          <span className="absolute bottom-0 text-center w-full mb-2 font-bold text-xl text-textMain">
+                            {building}
+                          </span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        ) : (
+          <div className="self-center mt-5">수집된 정보가 없습니다.</div>
+        )}
         <span className="mt-8 font-bold text-xl ml-4">이용 특성</span>
         <div className="flex flex-col ml-4 mt-2">
           {f_data.properties.map((value, index) => (

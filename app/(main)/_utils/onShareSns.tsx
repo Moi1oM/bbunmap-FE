@@ -27,7 +27,7 @@ const ShareButton: React.FC<ShareData> = ({ title, url }: ShareData) => {
 
   return (
     <Button
-      className="self-center w-4/5 bg-gray-100 flex flex-row items-center justify-center bottom-10 absolute"
+      className="self-center w-4/5 bg-gray-100 flex flex-row items-center justify-center bottom-20 absolute"
       onClick={onShareToSns}
     >
       <Share />

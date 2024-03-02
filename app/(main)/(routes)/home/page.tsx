@@ -23,7 +23,7 @@ const BottomSheetWithDynamicImport = dynamic(
 
 const fetchBuildingLocation = async () => {
   const response = await fetch(
-    `https://port-0-bbunmap-be-5mk12alp3wgrdi.sel5.cloudtype.app/buildings/location`
+    `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/buildings/location`
   );
   return response.json();
 };
