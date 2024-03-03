@@ -43,7 +43,7 @@ export const SearchModal = () => {
       ],
     },
     {
-      type: "시설",
+      type: "편의",
       nameList: [
         {
           koreanName: "정수기",
@@ -72,7 +72,7 @@ export const SearchModal = () => {
       ],
     },
     {
-      type: "편의",
+      type: "생활",
       nameList: [
         {
           koreanName: "식당",
@@ -85,10 +85,6 @@ export const SearchModal = () => {
         {
           koreanName: "편의점",
           englishName: "convi",
-        },
-        {
-          koreanName: "유니스토어",
-          englishName: "unistore",
         },
       ],
     },
@@ -107,17 +103,17 @@ export const SearchModal = () => {
     },
   ];
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  // const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const currentRef = inputRef.current;
-    if (currentRef !== null) {
-      currentRef.addEventListener("touchstart", (e) => {
-        e.preventDefault();
-      });
-      currentRef.focus();
-    }
-  }, []);
+  // useEffect(() => {
+  //   const currentRef = inputRef.current;
+  //   if (currentRef !== null) {
+  //     currentRef.addEventListener("touchstart", (e) => {
+  //       e.preventDefault();
+  //     });
+  //     currentRef.focus();
+  //   }
+  // }, []);
   let isEmpty = true;
 
   return (
@@ -128,7 +124,7 @@ export const SearchModal = () => {
             className="w-7 h-7 mr-2 ml-3 cursor-pointer"
             onClick={toggleSearchModal}
           />
-          <Input
+          {/* <Input
             ref={inputRef}
             type="text"
             placeholder="건물, 공간, 시설을 검색해보세요."
@@ -136,7 +132,7 @@ export const SearchModal = () => {
             onChange={handleSearchChange}
             onBlur={(e) => e.preventDefault()}
             className="mr-4"
-          />
+          /> */}
         </div>
         <div className="w-full h-[1px] bg-[#DFE1E7] mt-3" />
 

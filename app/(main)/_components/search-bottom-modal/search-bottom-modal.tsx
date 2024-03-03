@@ -139,7 +139,7 @@ const SearchBottomModal = ({
             />
           </div>
         </div>
-        <div className="mt-4 text-center overflow-hidden">
+        <div className="mt-4 overflow-hidden mx-10">
           {data?.facilityTypeList && data.facilityTypeList.length > 0 ? (
             data.facilityTypeList
               .sort((a, b) =>

@@ -76,7 +76,7 @@ const BuildingDetail = () => {
     },
     {
       koreanName: "편의",
-      englishName: "convi",
+      englishName: "convenience",
       image: "/facility/convi.png",
     },
   ];

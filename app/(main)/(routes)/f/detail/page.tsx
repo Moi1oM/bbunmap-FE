@@ -20,6 +20,7 @@ import RouterBar from "@/app/(main)/_components/router-bar";
 import { Facility } from "@/app/_const/facility";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
+import FacilityDetailContent from "@/app/(main)/_components/facilitiy-detail/facility-detail-content";
 
 const fetchBuildingFacility = async (
   buildingName: string,
@@ -32,11 +33,22 @@ const fetchBuildingFacility = async (
   return response.json();
 };
 
-interface ResponseFacilityDetail {
+export interface ResponseFacilityDetail {
   buildingName?: string;
   buildingNum?: string;
   type?: string;
+  //라운지용
   loungeName?: string;
+  //그룹스터디룸용
+  reservation?: string;
+  reservationSite?: string;
+  studentIdCardTagging?: string;
+  studyRoomName?: string;
+  //카페용
+  cafeName?: string;
+  weekDayAvailableTime?: string;
+  weekendAvailableTime?: string;
+  //
   keyword?: string;
   mood?: string;
   conversation?: string;
@@ -77,7 +89,8 @@ const Detail = () => {
 
   useEffect(() => {
     console.log("abps", images);
-  }, [images]);
+    console.log("abps2", facilityData);
+  }, [facilityData, images]);
 
   return (
     <div className="w-full h-full max-w-[450px] select-none bg-white scrollbar-hide overflow-scroll top-0 left-0 mx-0 my-0 relative">
@@ -127,28 +140,7 @@ const Detail = () => {
             </>
           )}
         </Carousel>
-        <div className="flex flex-row justify-start ml-6 mt-6">
-          <div className="flex flex-col justify-start items-start flex-shrink-0">
-            <span className="text-sm text-[#74787D]">분위기</span>
-            <span className="text-sm text-[#74787D]">대화</span>
-            <span className="text-sm text-[#74787D]">콘센트</span>
-            <span className="text-sm text-[#74787D]">특징</span>
-          </div>
-          <div className="flex flex-col justify-start items-start ml-4 flex-shrink-0">
-            <span className="text-sm text-[#333333]">
-              {facilityData?.mood ?? "수집된 정보 없음."}
-            </span>
-            <span className="text-sm text-[#333333]">
-              {facilityData?.conversation ?? "수집된 정보 없음."}
-            </span>
-            <span className="text-sm text-[#333333]">
-              {facilityData?.socket ?? "수집된 정보 없음."}
-            </span>
-            <span className="text-sm text-[#333333] whitespace-normal max-w-[280px]">
-              {facilityData?.feature ?? "수집된 정보 없음."}
-            </span>
-          </div>
-        </div>
+        <FacilityDetailContent facilityData={facilityData!} />
 
         <div className="bg-white mt-5" />
         <ShareButton title={`${building} ${type}`} url={shareUrl} />

@@ -68,6 +68,14 @@ const Building = () => {
   const urlType: string = params.get("type") || "";
   const [selectedMenu, setSelectedMenu] = useState<TopMenu>("list");
 
+  const isConvenienceType = urlType === "convenience";
+
+  useEffect(() => {
+    if (isConvenienceType) {
+      setSelectedMenu("floormap");
+    }
+  }, [isConvenienceType]);
+
   const {
     isPending: facilityIsPending,
     error: facilityError,
@@ -136,7 +144,12 @@ const Building = () => {
             <TopToggleMenu
               title={"리스트"}
               selected={selectedMenu === "list"}
-              onClick={() => setSelectedMenu("list")}
+              onClick={() => {
+                if (!isConvenienceType) {
+                  setSelectedMenu("list");
+                }
+              }}
+              disable={isConvenienceType}
             />
             <TopToggleMenu
               title={"플로어맵"}
@@ -243,7 +256,7 @@ function englishToKorean(type: string) {
     case "stationery":
       return "문구점";
     case "studyRoom":
-      return "스터디룸";
+      return "그룹스터디룸";
     case "sleepingRoom":
       return "수면실";
     default:
