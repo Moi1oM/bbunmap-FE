@@ -83,7 +83,7 @@ const Reward = () => {
         <div
           className="flex flex-row justify-start mt-3 mb-3 w-full ml-5 cursor-pointer"
           onClick={() =>
-            router.push("https://1lzqaowxugu.typeform.com/to/FGD29dHH")
+            router.push("https://walla.my/survey/8qXP8VwvXGaaVOe7ytdM")
           }
         >
           <span>뻔맵에게 정보 제보하기</span>
@@ -92,7 +92,9 @@ const Reward = () => {
         <div
           className="flex flex-row justify-between mt-3 mb-3 w-full cursor-pointer"
           onClick={() =>
-            router.push("https://1lzqaowxugu.typeform.com/to/KzXjlk8L")
+            router.push(
+              "https://docs.google.com/forms/d/e/1FAIpQLSeHcHcLslM3k-e8PsVPB6_GxvXPtPSPnpKPSehug2xBU_PcMQ/viewform?usp=sf_link"
+            )
           }
         >
           <span className="ml-3">뻔맵에게 피드백 주기</span>

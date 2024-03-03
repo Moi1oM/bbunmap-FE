@@ -29,6 +29,16 @@ const Recommand = () => {
     ],
     place: [
       {
+        title: "조용히 공부하고 싶을 때",
+        imageSrc: "/fac-img/백주년기념관/1/[main]백주년기념관_F1_C-Lounge.jpg",
+        routerLink: "lounge",
+      },
+      {
+        title: "빠르게 커피 사고 싶을 때",
+        imageSrc: "/fac-img/과학도서관/B1/[main]과도_커피스퀘어.jpg",
+        routerLink: "cafe",
+      },
+      {
         title: "애기능 생활관 학식",
         imageSrc: "/recommand/애기능생활관_학식.png",
       },

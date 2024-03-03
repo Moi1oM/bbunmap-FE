@@ -8,6 +8,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface respondType {
   id: number;
@@ -25,6 +26,7 @@ const postCount = async (): Promise<any> => {
 };
 
 const OnAir = () => {
+  const router = useRouter();
   const { setTab } = useTabBarStore();
   const [count, setCount] = useState<number>(0);
   const { isPending, error, data } = useQuery<respondType>({
@@ -52,12 +54,15 @@ const OnAir = () => {
 
   const addMutation = useMutation({
     mutationFn: () =>
-      fetch("${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/count", {
+      fetch(`${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/count`, {
         method: "POST",
       }),
     onSuccess: () => {
-      fetchCount();
+      setCount(count + 1);
       toast.success("투표가 성공적으로 완료되었습니다");
+      setTimeout(() => {
+        router.push("https://walla.my/v/6PKsFEUwbNcRhrQesXYH");
+      }, 2000); // 2초 후에 페이지 이동
     },
   });
 

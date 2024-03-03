@@ -64,6 +64,7 @@ const Building = () => {
   const router = useRouter();
   const params = useSearchParams();
   const buildingName: string = params.get("building") || "default";
+  const toggleMenuHide: boolean = params.get("menuHide") === "true";
   const urlType: string = params.get("type") || "";
   const [selectedMenu, setSelectedMenu] = useState<TopMenu>("list");
 
@@ -111,7 +112,7 @@ const Building = () => {
               name: getFacilityName(type, fac),
               image_src: `/fac-img/${fac.buildingName}/${
                 buildingInfo.floor
-              }/${fac.picFile.split(",")[0].trim()}.jpg`,
+              }/${fac.picFile?.split(",")[0].trim()}.jpg`,
             });
           }
         });
@@ -130,18 +131,20 @@ const Building = () => {
     <div className="w-full h-full max-w-[450px] select-none bg-white scrollbar-hide overflow-scroll top-0 left-0 mx-auto my-0">
       <div className="flex flex-col justify-end mt-8 mb-2 ml-3">
         <RouterBar />
-        <div className="flex flex-row justify-evenly items-center">
-          <TopToggleMenu
-            title={"리스트"}
-            selected={selectedMenu === "list"}
-            onClick={() => setSelectedMenu("list")}
-          />
-          <TopToggleMenu
-            title={"플로어맵"}
-            selected={selectedMenu === "floormap"}
-            onClick={() => setSelectedMenu("floormap")}
-          />
-        </div>
+        {!toggleMenuHide && (
+          <div className="flex flex-row justify-evenly items-center">
+            <TopToggleMenu
+              title={"리스트"}
+              selected={selectedMenu === "list"}
+              onClick={() => setSelectedMenu("list")}
+            />
+            <TopToggleMenu
+              title={"플로어맵"}
+              selected={selectedMenu === "floormap"}
+              onClick={() => setSelectedMenu("floormap")}
+            />
+          </div>
+        )}
         {selectedMenu === "list" &&
           facilitiesByFloor.map((buildingInfo: any, index: number) => {
             return (

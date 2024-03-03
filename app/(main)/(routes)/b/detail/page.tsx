@@ -220,7 +220,9 @@ const BuildingDetail = () => {
                 alt="Documents"
               />
             </div>
-            <span className="font-bold">수집된 정보가 없습니다!</span>
+            <span className="font-bold">
+              뻔선이 열심히 정보를 수집하고 있어요!
+            </span>
           </div>
         )}
         <span className="mt-8 font-bold text-xl ml-4">이용 특성</span>

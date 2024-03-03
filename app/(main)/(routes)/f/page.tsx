@@ -10,7 +10,7 @@ import { useSearchBottomModal } from "@/hooks/useSearchBottomModal";
 import SearchBottomModal from "../../_components/search-bottom-modal/search-bottom-modal";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type BuildingNum = {
   buildingName: string;

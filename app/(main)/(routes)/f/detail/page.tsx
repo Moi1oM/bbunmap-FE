@@ -131,7 +131,7 @@ const Detail = () => {
           <div className="flex flex-col justify-start items-start flex-shrink-0">
             <span className="text-sm text-[#74787D]">분위기</span>
             <span className="text-sm text-[#74787D]">대화</span>
-            <span className="text-sm text-[#74787D]">멀티탭</span>
+            <span className="text-sm text-[#74787D]">콘센트</span>
             <span className="text-sm text-[#74787D]">특징</span>
           </div>
           <div className="flex flex-col justify-start items-start ml-4 flex-shrink-0">
