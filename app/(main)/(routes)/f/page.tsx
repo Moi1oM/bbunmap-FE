@@ -11,6 +11,7 @@ import SearchBottomModal from "../../_components/search-bottom-modal/search-bott
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useSearchKeywordConvi } from "@/hooks/useSearchKeywordConvi";
 
 type BuildingNum = {
   buildingName: string;
@@ -41,6 +42,12 @@ const Facility = () => {
   const params = useSearchParams();
   const type = params.get("type") || "lounge";
   const entity = params.get("entity") === "true";
+  const isConvi = params.get("convi") === "true";
+  const { setSearchKeywordConviTrue } = useSearchKeywordConvi();
+
+  useEffect(() => {
+    setSearchKeywordConviTrue();
+  }, [isConvi, setSearchKeywordConviTrue]);
 
   const {
     isPending: facilityIsPending,

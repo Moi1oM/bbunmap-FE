@@ -32,7 +32,7 @@ type EnglishName =
   | "lounge"
   | "readingRoom"
   | "sleepRoom"
-  | "carol"
+  | "carrel"
   | "studyRoom"
   | "waterPurifier"
   | "vendingMachine"
@@ -51,7 +51,7 @@ const nameMap: Record<EnglishName, string> = {
   lounge: "라운지",
   readingRoom: "열람실",
   sleepRoom: "수면실",
-  carol: "캐럴",
+  carrel: "캐럴",
   studyRoom: "스터디룸",
   waterPurifier: "정수기",
   vendingMachine: "자판기",
@@ -90,8 +90,11 @@ const SearchBottomModal = ({
 
   if (isPending) return <SearchBottomModalSkeleton />;
   if (error) return "An error has occurred: " + error.message;
-
-  const koreanSearchText = nameMap[searchText as EnglishName];
+  let koreanSearchText = searchText;
+  if (/^[a-zA-Z\s]*$/.test(searchText)) {
+    koreanSearchText = nameMap[searchText as EnglishName];
+    console.log(koreanSearchText);
+  }
 
   return (
     <div

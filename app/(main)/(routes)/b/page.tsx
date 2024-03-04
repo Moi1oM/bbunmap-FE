@@ -4,6 +4,7 @@ import { FloorFactilities } from "@/app/(main)/_components/floor-factilities";
 import TopToggleMenu from "@/app/(main)/_components/list-floor-top-bar";
 import RouterBar from "@/app/(main)/_components/router-bar";
 import TitleImage from "@/app/(main)/_components/title-image";
+import { useSearchKeywordConvi } from "@/hooks/useSearchKeywordConvi";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -68,8 +69,10 @@ const Building = () => {
   const urlType: string = params.get("type") || "";
   const urlTypes: string[] = urlType.split(";");
   const [selectedMenu, setSelectedMenu] = useState<TopMenu>("list");
+  const { isSearchKeywordConvi } = useSearchKeywordConvi();
 
-  const isConvenienceType = urlTypes.includes("convenience");
+  const isConvenienceType =
+    urlTypes.includes("convenience") || isSearchKeywordConvi;
 
   const {
     isPending: facilityIsPending,
@@ -86,7 +89,8 @@ const Building = () => {
     }
     // console.log(urlTypes, urlTypes.length);
     console.log(facilityData);
-  }, [facilityData, isConvenienceType, urlTypes]);
+    console.log("is", isSearchKeywordConvi);
+  }, [facilityData, isConvenienceType, isSearchKeywordConvi, urlTypes]);
 
   const facilitiesTypes = [
     "lounge",
@@ -106,9 +110,13 @@ const Building = () => {
       if (!acc[buildingInfo.floor]) {
         const newType =
           urlTypes.length === 2
-            ? "carrel&studyRoom"
+            ? urlType.includes("carrel")
+              ? "carrel&studyRoom"
+              : "cafe&restaurant"
             : urlType === "carrel"
             ? "carol"
+            : isSearchKeywordConvi
+            ? "convenience"
             : urlType;
         acc[buildingInfo.floor] = {
           buildingName: buildingInfo.buildingName,
@@ -170,6 +178,7 @@ const Building = () => {
         )}
         {selectedMenu === "list" &&
           facilitiesByFloor.map((buildingInfo: any, index: number) => {
+            console.log(index, buildingInfo);
             return (
               <FloorFactilities
                 buildingName={buildingInfo.buildingName}

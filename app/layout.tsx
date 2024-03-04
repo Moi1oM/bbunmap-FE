@@ -28,7 +28,7 @@ export default async function RootLayout({
   const mainURL = process.env.NEXT_PUBLIC_MAIN_URL;
   return (
     <html lang="en" className="overflow-scroll scrollbar-hide">
-      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+      <meta httpEquiv="content-type" content="text/html; charset=UTF-8" />
       <meta property="og:url" content="https://www.bbunmap.com/home" />
       <meta property="og:title" content="뻔맵-BbunMap" />
       <meta property="og:type" content="website" />

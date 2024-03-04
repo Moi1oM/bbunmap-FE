@@ -27,8 +27,10 @@ const fetchBuildingFacility = async (
   type: string,
   facName: string
 ) => {
+  const newType = type === "carrel" ? "studyRoom" : type;
+
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/f/${type}?buildingName=${buildingName}&facilityName=${facName}`
+    `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/f/${newType}?buildingName=${buildingName}&facilityName=${facName}`
   );
   return response.json();
 };
@@ -72,7 +74,7 @@ const Detail = () => {
     shareString !== null ? shareString.toLowerCase() === "true" : null;
   const mainURL = process.env.NEXT_PUBLIC_MAIN_URL;
 
-  const shareUrl = `${mainURL}${pathname}?type=${type}&building=${building}&share=true`;
+  const shareUrl = `${mainURL}${pathname}?type=${type}&facName=${facName}&facFloor=${facFloor}&building=${building}&share=true`;
 
   if (!type || !building) redirect("/home");
 

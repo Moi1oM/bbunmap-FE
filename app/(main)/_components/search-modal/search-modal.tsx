@@ -6,6 +6,7 @@ import { ChevronLeft } from "lucide-react";
 import { NameAndList } from "./name-and-list";
 import { SetStateAction, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useSearchKeywordConvi } from "@/hooks/useSearchKeywordConvi";
 
 export const SearchModal = () => {
   const { isSearchModalOpen, toggleSearchModal } = useSearchModal();
@@ -15,6 +16,14 @@ export const SearchModal = () => {
   }) => {
     setSearchText(event.target.value);
   };
+  const { isSearchKeywordConvi, setSearchKeywordConviFalse } =
+    useSearchKeywordConvi();
+
+  useEffect(() => {
+    console.log("is1", isSearchKeywordConvi);
+    setSearchKeywordConviFalse();
+    console.log("is2", isSearchKeywordConvi);
+  }, [isSearchKeywordConvi, setSearchKeywordConviFalse]);
 
   const datas = [
     {
@@ -168,6 +177,7 @@ export const SearchModal = () => {
                   name={data.type}
                   nameList={filteredNameList}
                   entity={entity}
+                  isConvi={data.type === "편의"}
                 />
               );
             }

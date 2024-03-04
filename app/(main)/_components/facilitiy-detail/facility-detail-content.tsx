@@ -45,7 +45,10 @@ const FacilityDetailContent = ({
         </div>
       </div>
     );
-  } else if (facilityData?.type === "그룹스터디룸") {
+  } else if (
+    facilityData?.type === "그룹스터디룸" ||
+    facilityData?.type === "캐럴"
+  ) {
     return (
       <div className="flex flex-row justify-start ml-6 mt-6">
         <div className="flex flex-col justify-start items-start flex-shrink-0">

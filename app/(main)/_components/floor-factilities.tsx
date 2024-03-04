@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BuildingInfo, Facility } from "../(routes)/b/page";
 import { ImageTitleDescription } from "./image-title-description";
 
@@ -18,6 +19,18 @@ export const FloorFactilities = ({
   urlType,
   facFloor,
 }: FloorFacilitiesProps) => {
+  useEffect(() => {
+    console.log(
+      "1234",
+      floor,
+      facilities,
+      buildingName,
+      buildInfo,
+      urlType,
+      facFloor
+    );
+  }, [buildInfo, buildingName, facFloor, facilities, floor, urlType]);
+
   return (
     <div className="flex flex-col justify-start mt-4">
       <span className="font-medium text-xl bg-gray-100 pl-3">{floor}층</span>
