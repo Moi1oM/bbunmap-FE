@@ -31,7 +31,6 @@ const FacilityDetailContent = ({
           <span className="text-sm text-[#74787D]">분위기</span>
           <span className="text-sm text-[#74787D]">대화</span>
           <span className="text-sm text-[#74787D]">콘센트</span>
-          <span className="text-sm text-[#74787D]">특징</span>
         </div>
         <div className="flex flex-col justify-start items-start ml-4 flex-shrink-0">
           <span className="text-sm text-[#333333]">
@@ -42,9 +41,6 @@ const FacilityDetailContent = ({
           </span>
           <span className="text-sm text-[#333333]">
             {facilityData?.socket ?? "수집된 정보 없음."}
-          </span>
-          <span className="text-sm text-[#333333] whitespace-normal max-w-[280px]">
-            {facilityData?.feature ?? "수집된 정보 없음."}
           </span>
         </div>
       </div>

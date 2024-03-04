@@ -66,15 +66,10 @@ const Building = () => {
   const buildingName: string = params.get("building") || "default";
   const toggleMenuHide: boolean = params.get("menuHide") === "true";
   const urlType: string = params.get("type") || "";
+  const urlTypes: string[] = urlType.split(";");
   const [selectedMenu, setSelectedMenu] = useState<TopMenu>("list");
 
-  const isConvenienceType = urlType === "convenience";
-
-  useEffect(() => {
-    if (isConvenienceType) {
-      setSelectedMenu("floormap");
-    }
-  }, [isConvenienceType]);
+  const isConvenienceType = urlTypes.includes("convenience");
 
   const {
     isPending: facilityIsPending,
@@ -84,6 +79,14 @@ const Building = () => {
     queryKey: ["facilityList", buildingName],
     queryFn: () => fetchBuildingFacilities(buildingName),
   });
+
+  useEffect(() => {
+    if (isConvenienceType) {
+      setSelectedMenu("floormap");
+    }
+    // console.log(urlTypes, urlTypes.length);
+    console.log(facilityData);
+  }, [facilityData, isConvenienceType, urlTypes]);
 
   const facilitiesTypes = [
     "lounge",
@@ -101,31 +104,38 @@ const Building = () => {
   const groupedFacilities = facilityData?.reduce(
     (acc: any, buildingInfo: BuildingInfo) => {
       if (!acc[buildingInfo.floor]) {
+        const newType =
+          urlTypes.length === 2
+            ? "carrel&studyRoom"
+            : urlType === "carrel"
+            ? "carol"
+            : urlType;
         acc[buildingInfo.floor] = {
           buildingName: buildingInfo.buildingName,
           floor: buildingInfo.floor,
           facilities: [],
           floorMap: {
             floor: buildingInfo.floor,
-            image: `/floorMap/${buildingInfo.buildingName}/${buildingInfo.floor}/${urlType}.png`,
+            image: `/floorMap/${buildingInfo.buildingName}/${buildingInfo.floor}/${newType}.png`,
           },
         };
       }
       facilitiesTypes.forEach((type) => {
         buildingInfo[type].forEach((fac: FacResponse) => {
-          if (urlType === "" || fac.type === englishToKorean(urlType)) {
-            // fac.type이 type과 동일한 경우에만 추가
-            acc[buildingInfo.floor].facilities.push({
-              type: fac.type,
-              name: getFacilityName(type, fac),
-              image_src: `/fac-img/${fac.buildingName}/${
-                buildingInfo.floor
-              }/${fac.picFile?.split(",")[0].trim()}.jpg`,
-            });
-          }
+          urlTypes.forEach((urlType) => {
+            if (urlType === "" || fac.type === englishToKorean(urlType)) {
+              // fac.type이 type과 동일한 경우에만 추가
+              acc[buildingInfo.floor].facilities.push({
+                type: fac.type,
+                name: getFacilityName(type, fac),
+                image_src: `/fac-img/${fac.buildingName}/${
+                  buildingInfo.floor
+                }/${fac.picFile?.split(",")[0].trim()}.jpg`,
+              });
+            }
+          });
         });
       });
-      console.log("abps", acc);
       return acc;
     },
     {}
@@ -252,13 +262,15 @@ function englishToKorean(type: string) {
     case "restaurant":
       return "식당";
     case "restRoom":
-      return "화장실";
+      return "수면실";
     case "stationery":
       return "문구점";
     case "studyRoom":
       return "그룹스터디룸";
     case "sleepingRoom":
       return "수면실";
+    case "carrel":
+      return "캐럴";
     default:
       return type; // 알 수 없는 type에 대해서는 그대로 반환
   }

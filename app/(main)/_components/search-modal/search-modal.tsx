@@ -30,11 +30,11 @@ export const SearchModal = () => {
         },
         {
           koreanName: "수면실",
-          englishName: "sleepRoom",
+          englishName: "restRoom",
         },
         {
           koreanName: "캐럴",
-          englishName: "carol",
+          englishName: "carrel",
         },
         {
           koreanName: "스터디룸",
@@ -47,23 +47,23 @@ export const SearchModal = () => {
       nameList: [
         {
           koreanName: "정수기",
-          englishName: "waterPurifier",
+          englishName: "정수기",
         },
         {
           koreanName: "자판기",
-          englishName: "vendingMachine",
+          englishName: "자판기",
         },
         {
           koreanName: "프린터기",
-          englishName: "printer",
+          englishName: "프린터",
         },
         {
           koreanName: "자동대출반납기",
-          englishName: "autoReturn",
+          englishName: "자동대출반납기",
         },
         {
           koreanName: "컴퓨터",
-          englishName: "computer",
+          englishName: "컴퓨터",
         },
         {
           koreanName: "ATM",
@@ -84,7 +84,7 @@ export const SearchModal = () => {
         },
         {
           koreanName: "편의점",
-          englishName: "convi",
+          englishName: "convenience",
         },
       ],
     },

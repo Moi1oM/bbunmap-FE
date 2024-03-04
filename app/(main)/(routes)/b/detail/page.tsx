@@ -60,18 +60,18 @@ const BuildingDetail = () => {
       image: "/facility/lounge.png",
     },
     {
-      koreanName: "캐럴",
-      englishName: "carol",
+      koreanName: "캐럴/스터디룸",
+      englishName: "carrel;studyRoom",
       image: "/facility/carol.png",
     },
     {
-      koreanName: "스터디룸",
-      englishName: "studyRoom",
+      koreanName: "열람실",
+      englishName: "readingRoom",
       image: "/facility/studyRoom.png",
     },
     {
-      koreanName: "카페",
-      englishName: "cafe",
+      koreanName: "카페/식당",
+      englishName: "cafe;restaurant",
       image: "/facility/cafe.png",
     },
     {

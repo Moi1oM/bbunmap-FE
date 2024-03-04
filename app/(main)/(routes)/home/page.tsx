@@ -65,7 +65,8 @@ export default function Home() {
     setTab("home");
     // setSearchModalClose();
     openBottomSheet();
-  }, [openBottomSheet, setTab]);
+    console.log("loc", locationData);
+  }, [locationData, openBottomSheet, setTab]);
 
   return (
     <div className="w-full max-w-[450px] h-full left-0 top-0">
