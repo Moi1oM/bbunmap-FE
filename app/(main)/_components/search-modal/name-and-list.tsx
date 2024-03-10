@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useSearchKeywordConvi } from "@/hooks/useSearchKeywordConvi";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 interface NameAndListProps {
   name: string;
@@ -18,7 +19,12 @@ export const NameAndList = ({
   isConvi = false,
 }: NameAndListProps) => {
   const router = useRouter();
-  const { setSearchKeywordConviTrue } = useSearchKeywordConvi();
+  const { setSearchKeywordConviTrue, isSearchKeywordConvi } =
+    useSearchKeywordConvi();
+
+  useEffect(() => {
+    console.log("1222", isConvi, nameList, isSearchKeywordConvi);
+  }, [isConvi, nameList, isSearchKeywordConvi]);
 
   return (
     <div className="flex flex-col mt-6 ml-4">
@@ -30,10 +36,19 @@ export const NameAndList = ({
               key={index}
               className="bg-[#F5F6F6] text-[#74787D] mr-[7px] mb-4"
               onClick={() => {
+                // if (isConvi) {
+                //   setSearchKeywordConviTrue();
+                // }
+                // router.push(`/f?type=${name!.englishName}&entity=${entity}`);
                 if (isConvi) {
-                  setSearchKeywordConviTrue();
+                  router.push(
+                    `/f?type=${
+                      name!.englishName
+                    }&entity=${entity}&isConvi=${true}`
+                  );
+                } else {
+                  router.push(`/f?type=${name!.englishName}&entity=${entity}`);
                 }
-                router.push(`/f?type=${name!.englishName}&entity=${entity}`);
               }}
             >
               {name!.koreanName}

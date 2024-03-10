@@ -131,7 +131,7 @@ const Building = () => {
       facilitiesTypes.forEach((type) => {
         buildingInfo[type].forEach((fac: FacResponse) => {
           urlTypes.forEach((urlType) => {
-            if (urlType === "" || fac.type === englishToKorean(urlType)) {
+            if (urlType === "" || isEnglishAndKoreanSame(fac.type, urlType)) {
               // fac.type이 type과 동일한 경우에만 추가
               acc[buildingInfo.floor].facilities.push({
                 type: fac.type,
@@ -283,4 +283,13 @@ function englishToKorean(type: string) {
     default:
       return type; // 알 수 없는 type에 대해서는 그대로 반환
   }
+}
+
+function isEnglishAndKoreanSame(facType: string, urlType: string) {
+  // fac.type === englishToKorean(urlType)
+  const urlTypeToKorean = englishToKorean(urlType);
+  if (urlTypeToKorean === "그룹스터디룸") {
+    return facType === urlTypeToKorean || facType === "스터디룸";
+  }
+  return facType === urlTypeToKorean;
 }

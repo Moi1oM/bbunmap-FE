@@ -43,11 +43,27 @@ const Facility = () => {
   const type = params.get("type") || "lounge";
   const entity = params.get("entity") === "true";
   const isConvi = params.get("convi") === "true";
-  const { setSearchKeywordConviTrue } = useSearchKeywordConvi();
+  const isConviFromSearchModal = params.get("isConvi") === "true";
+  const { setSearchKeywordConviTrue, isSearchKeywordConvi } =
+    useSearchKeywordConvi();
+  const {
+    setSearchBottomModalOpen,
+    isSearchBottomModalOpen,
+    bottomModalSearchBuilding,
+    setSearchBottomModalClose,
+  } = useSearchBottomModal();
 
   useEffect(() => {
-    setSearchKeywordConviTrue();
-  }, [isConvi, setSearchKeywordConviTrue]);
+    // isConviFromSearchModal이 true일 경우 setSearchKeywordConviTrue 실행
+    if (isConviFromSearchModal) {
+      setSearchKeywordConviTrue();
+    }
+    setSearchBottomModalClose();
+    // 기타 로그 출력
+    console.log("isConvi", isConvi);
+    console.log("isSearchKeywordConvi", isSearchKeywordConvi);
+    console.log("isConviFromSearchModal", isConviFromSearchModal);
+  }, [isConvi, isConviFromSearchModal, isSearchKeywordConvi]);
 
   const {
     isPending: facilityIsPending,
@@ -61,12 +77,6 @@ const Facility = () => {
   if (facilityData && facilityData?.length === 1) {
     router.push(`/b?type=${type}&building=${facilityData[0].buildingName}`);
   }
-
-  const {
-    setSearchBottomModalOpen,
-    isSearchBottomModalOpen,
-    bottomModalSearchBuilding,
-  } = useSearchBottomModal();
 
   const facilityInfos: BuildingFacilityInfo[] | undefined = facilityData?.map(
     (item) => ({

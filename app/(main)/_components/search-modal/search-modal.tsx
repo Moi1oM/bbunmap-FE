@@ -20,9 +20,7 @@ export const SearchModal = () => {
     useSearchKeywordConvi();
 
   useEffect(() => {
-    console.log("is1", isSearchKeywordConvi);
     setSearchKeywordConviFalse();
-    console.log("is2", isSearchKeywordConvi);
   }, [isSearchKeywordConvi, setSearchKeywordConviFalse]);
 
   const datas = [
@@ -170,6 +168,8 @@ export const SearchModal = () => {
                   "sleepingRoom",
                 ].includes(filteredName.englishName)
               );
+
+              console.log("123444", data);
 
               return (
                 <NameAndList
