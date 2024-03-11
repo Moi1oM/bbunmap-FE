@@ -54,18 +54,6 @@ const Facility = () => {
     setSearchBottomModalClose,
   } = useSearchBottomModal();
 
-  useEffect(() => {
-    // isConviFromSearchModal이 true일 경우 setSearchKeywordConviTrue 실행
-    if (isConviFromSearchModal) {
-      setSearchKeywordConviTrue();
-    }
-    setSearchBottomModalClose();
-    // 기타 로그 출력
-    console.log("isConvi", isConvi);
-    console.log("isSearchKeywordConvi", isSearchKeywordConvi);
-    console.log("isConviFromSearchModal", isConviFromSearchModal);
-  }, [isConvi, isConviFromSearchModal, isSearchKeywordConvi]);
-
   const {
     isPending: facilityIsPending,
     error: facilityError,
@@ -74,7 +62,18 @@ const Facility = () => {
     queryKey: ["facilityNumList", type],
     queryFn: () => fetchBuildingNums(type, entity),
   });
-
+  useEffect(() => {
+    // isConviFromSearchModal이 true일 경우 setSearchKeywordConviTrue 실행
+    if (isConviFromSearchModal) {
+      setSearchKeywordConviTrue();
+    }
+    setSearchBottomModalClose();
+    console.log(facilityData);
+    // 기타 로그 출력
+    console.log("isConvi", isConvi);
+    console.log("isSearchKeywordConvi", isSearchKeywordConvi);
+    console.log("isConviFromSearchModal", isConviFromSearchModal);
+  }, [isConvi, isConviFromSearchModal, isSearchKeywordConvi]);
   if (facilityData && facilityData?.length === 1) {
     router.push(`/b?type=${type}&building=${facilityData[0].buildingName}`);
   }
