@@ -37,7 +37,7 @@ export const SearchModal = () => {
         },
         {
           koreanName: "수면실",
-          englishName: "restRoom",
+          englishName: "sleepingRoom",
         },
         {
           koreanName: "캐럴",

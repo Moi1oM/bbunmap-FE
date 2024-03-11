@@ -31,7 +31,7 @@ const fetchBuildingData = async (buildingName: string) => {
 type EnglishName =
   | "lounge"
   | "readingRoom"
-  | "sleepRoom"
+  | "sleepingRoom"
   | "carrel"
   | "studyRoom"
   | "waterPurifier"
@@ -50,7 +50,7 @@ type EnglishName =
 const nameMap: Record<EnglishName, string> = {
   lounge: "라운지",
   readingRoom: "열람실",
-  sleepRoom: "수면실",
+  sleepingRoom: "수면실",
   carrel: "캐럴",
   studyRoom: "스터디룸",
   waterPurifier: "정수기",

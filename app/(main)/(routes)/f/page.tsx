@@ -33,6 +33,7 @@ const fetchBuildingNums = async (facName: string, entity: boolean) => {
   const url = entity
     ? `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/facility/${facName}`
     : `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/facilityLoc?type=${facName}`;
+  console.log(url);
   const response = await fetch(url);
   return response.json();
 };
@@ -78,13 +79,15 @@ const Facility = () => {
     router.push(`/b?type=${type}&building=${facilityData[0].buildingName}`);
   }
 
-  const facilityInfos: BuildingFacilityInfo[] | undefined = facilityData?.map(
-    (item) => ({
-      lat: item.latitude,
-      lon: item.longitude,
-      name: item.buildingName,
-    })
-  );
+  const facilityInfos: BuildingFacilityInfo[] | undefined = Array.isArray(
+    facilityData
+  )
+    ? facilityData.map((item) => ({
+        lat: item.latitude,
+        lon: item.longitude,
+        name: item.buildingName,
+      }))
+    : undefined;
 
   return (
     <div className="w-full max-w-[450px] h-full left-0 top-0">
