@@ -42,7 +42,7 @@ type EnglishName =
   | "atm"
   | "restaurant"
   | "cafe"
-  | "convi"
+  | "convenience"
   | "unistore"
   | "smokingArea"
   | "shuttleBus";
@@ -61,7 +61,7 @@ const nameMap: Record<EnglishName, string> = {
   atm: "ATM",
   restaurant: "식당",
   cafe: "카페",
-  convi: "편의점",
+  convenience: "편의점",
   unistore: "유니스토어",
   smokingArea: "흡연구역",
   shuttleBus: "셔틀버스",

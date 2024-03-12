@@ -80,15 +80,6 @@ const BuildingDetail = () => {
       image: "/facility/convi.png",
     },
   ];
-  const f_data = {
-    buildingName: building,
-    // 이 아래 빌딩 이름을 기반으로 데이터를 가져와야 합니다.
-    properties: [
-      "2020년에 지어져 시설이 깨끗하다.",
-      "1층에는 전시, 부스 등을 진행하는 공간이 있고 강당이 있다.",
-      "취업박람회 등 외부 행사가 열리는 장소다.",
-    ],
-  };
 
   useEffect(() => {
     console.log("b detail ", isImgError);
@@ -221,7 +212,10 @@ const BuildingDetail = () => {
               />
             </div>
             <span className="font-bold">
-              뻔선이 열심히 정보를 수집하고 있어요!
+              뻔선이 열심히 정보를 수집하고 있어요
+            </span>
+            <span className="font-bold">
+              MY페이지에 가서 정보를 제보해 주세요!
             </span>
           </div>
         )}
