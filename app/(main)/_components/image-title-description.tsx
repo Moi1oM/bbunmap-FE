@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 interface ImageTitleDescriptionProps {
   title: string;
@@ -21,6 +22,9 @@ export const ImageTitleDescription = ({
   route,
 }: ImageTitleDescriptionProps) => {
   const router = useRouter();
+  useEffect(() => {
+    console.log("image loading... ", image);
+  }, []);
   return (
     <div
       className="flex-col flex items-start justify-start max-w-[200px] overflow-hidden cursor-pointer mt-4 mr-3"
@@ -72,6 +76,8 @@ function koreanToEnglish(type: string) {
     case "문구점":
       return "stationery";
     case "그룹스터디룸":
+      return "studyRoom";
+    case "스터디룸":
       return "studyRoom";
     case "수면실":
       return "sleepingRoom";

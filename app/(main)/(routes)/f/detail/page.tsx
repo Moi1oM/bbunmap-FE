@@ -28,7 +28,6 @@ const fetchBuildingFacility = async (
   facName: string
 ) => {
   const newType = type === "carrel" ? "studyRoom" : type;
-
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_MAIN_URL}/f/${newType}?buildingName=${buildingName}&facilityName=${facName}`
   );
@@ -90,8 +89,9 @@ const Detail = () => {
   let images = facilityData?.picFile?.split(",").map((value) => value.trim());
 
   useEffect(() => {
-    console.log("abps", images);
-    console.log("abps2", facilityData);
+    console.log("images... ", images);
+    console.log("fetch Data... ", facilityData);
+    console.log("building", building, "type", type, "facName", facName);
   }, [facilityData, images]);
 
   return (
