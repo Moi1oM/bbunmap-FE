@@ -267,7 +267,7 @@ function englishToKorean(type: string) {
     case "lounge":
       return "라운지";
     case "readingRoom":
-      return "독서실";
+      return "열람실";
     case "restaurant":
       return "식당";
     case "restRoom":
