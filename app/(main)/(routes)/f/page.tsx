@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useSearchKeywordConvi } from "@/hooks/useSearchKeywordConvi";
+import { toast } from "sonner";
 
 type BuildingNum = {
   buildingName: string;
@@ -60,7 +61,15 @@ const Facility = () => {
     data: facilityData,
   } = useQuery<ResponseData[]>({
     queryKey: ["facilityNumList", type],
-    queryFn: () => fetchBuildingNums(type, entity),
+    queryFn: () => {
+      const promise = fetchBuildingNums(type, entity);
+      toast.promise(promise, {
+        loading: "데이터를 불러오는 중입니다...",
+        success: "데이터 로딩 성공!",
+        error: "데이터 로딩에 실패했습니다.",
+      });
+      return promise;
+    },
   });
   useEffect(() => {
     // isConviFromSearchModal이 true일 경우 setSearchKeywordConviTrue 실행

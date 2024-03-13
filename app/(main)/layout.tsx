@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <main className="flex justify-center items-center h-screen scrollbar-hide overflow-scroll">
       <Providers>
-        <Toaster position="bottom-center" />
+        <Toaster position="bottom-center" closeButton />
         {children}
       </Providers>
       {/* <Analytics /> */}

@@ -15,6 +15,7 @@ import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 interface BuildingDetailProps {}
 
@@ -50,7 +51,15 @@ const BuildingDetail = () => {
     data: facData,
   } = useQuery<FacilityInfo>({
     queryKey: ["facilityDetailList", building],
-    queryFn: () => fetchFacilityList(building!),
+    queryFn: () => {
+      const promise = fetchFacilityList(building!);
+      toast.promise(promise, {
+        loading: "시설 목록을 불러오는 중입니다...",
+        success: "시설 목록 로딩 성공!",
+        error: "시설 목록 로딩에 실패했습니다.",
+      });
+      return promise;
+    },
   });
 
   const facilityList = [

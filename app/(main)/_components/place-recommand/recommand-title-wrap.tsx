@@ -23,7 +23,7 @@ const RecommandTitleWrap = ({ data }: RecommandTitleWrapProps) => {
   return (
     <>
       {data?.map((value, index) => (
-        <div className="flex flex-col justify-start mt-8" key={index}>
+        <div className="flex flex-col justify-start mt-8 ml-4" key={index}>
           <span className="font-medium text-xl bg-gray-100 py-1 rounded-md pl-3 flex justify-between items-center">
             {value.title}
             <ChevronRight

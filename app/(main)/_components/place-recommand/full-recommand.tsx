@@ -12,7 +12,7 @@ interface FullRecommandProps {
 const FullRecommand = ({ data }: FullRecommandProps) => {
   return (
     <div className="w-full h-full max-w-[450px] select-none bg-white scrollbar-hide overflow-scroll top-0 left-0 mx-0 my-0 relative">
-      <div className="flex flex-col justify-start  mt-8 mb-2 ml-3">
+      <div className="flex flex-col justify-start  mt-8 mb-2 ml-4">
         <RouterBar share={false} fullRecommand={true} />
         <span className="font-medium text-xl bg-gray-100 py-1 rounded-md pl-3 flex justify-between items-center mt-8 mr-10">
           {data?.title}

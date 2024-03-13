@@ -23,6 +23,7 @@ import { useEffect } from "react";
 import FacilityDetailContent from "@/app/(main)/_components/facilitiy-detail/facility-detail-content";
 import { Button } from "@/components/ui/button";
 import Share from "@/public/icons/share.svg";
+import { toast } from "sonner";
 
 const fetchBuildingFacility = async (
   buildingName: string,
@@ -86,7 +87,15 @@ const Detail = () => {
     data: facilityData,
   } = useQuery<ResponseFacilityDetail>({
     queryKey: ["facilityDetailInfo", building, facName],
-    queryFn: () => fetchBuildingFacility(building, type, facName),
+    queryFn: () => {
+      const promise = fetchBuildingFacility(building, type, facName);
+      toast.promise(promise, {
+        loading: "건물 시설 정보를 불러오는 중입니다...",
+        success: "건물 시설 정보 로딩 성공!",
+        error: "건물 시설 정보 로딩에 실패했습니다.",
+      });
+      return promise;
+    },
   });
 
   let images = facilityData?.picFile?.split(",").map((value) => value.trim());
