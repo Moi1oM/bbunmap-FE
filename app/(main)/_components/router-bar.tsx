@@ -1,14 +1,17 @@
 "use client";
 
+import { usePlaceRecommand } from "@/hooks/usePlaceRecommand";
 import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface RouterBarProps {
   share?: boolean | null;
+  fullRecommand?: boolean | null;
 }
 
-const RouterBar = ({ share }: RouterBarProps) => {
+const RouterBar = ({ share, fullRecommand }: RouterBarProps) => {
   const router = useRouter();
+  const { setFullRecommandClose, refreshKeyword } = usePlaceRecommand();
 
   return (
     <div className="flex flex-row justify-start items-center">
@@ -17,6 +20,9 @@ const RouterBar = ({ share }: RouterBarProps) => {
         onClick={() => {
           if (share) {
             router.push("/home");
+          } else if (fullRecommand) {
+            setFullRecommandClose();
+            refreshKeyword();
           } else {
             router.back();
           }

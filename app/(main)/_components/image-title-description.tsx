@@ -59,7 +59,7 @@ export const ImageTitleDescription = ({
   );
 };
 
-function koreanToEnglish(type: string) {
+export function koreanToEnglish(type: string) {
   switch (type) {
     case "카페":
       return "cafe";
@@ -72,17 +72,17 @@ function koreanToEnglish(type: string) {
     case "식당":
       return "restaurant";
     case "수면실":
-      return "restRoom";
+      return "sleepingRoom";
     case "문구점":
       return "stationery";
     case "그룹스터디룸":
       return "studyRoom";
     case "스터디룸":
       return "studyRoom";
-    case "수면실":
-      return "sleepingRoom";
     case "캐럴":
       return "carrel";
+    case "식사":
+      return "restaurant";
     default:
       return type; // 알 수 없는 type에 대해서는 그대로 반환
   }

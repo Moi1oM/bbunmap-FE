@@ -21,6 +21,8 @@ import { Facility } from "@/app/_const/facility";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import FacilityDetailContent from "@/app/(main)/_components/facilitiy-detail/facility-detail-content";
+import { Button } from "@/components/ui/button";
+import Share from "@/public/icons/share.svg";
 
 const fetchBuildingFacility = async (
   buildingName: string,
@@ -69,6 +71,7 @@ const Detail = () => {
   const facility: Facility = type as Facility;
   const building = params.get("building");
   const shareString: string | null = params.get("share");
+  const fromRecommand = params.get("fromRecommand") === "true";
   const share: boolean | null =
     shareString !== null ? shareString.toLowerCase() === "true" : null;
   const mainURL = process.env.NEXT_PUBLIC_MAIN_URL;
@@ -145,7 +148,18 @@ const Detail = () => {
         <FacilityDetailContent facilityData={facilityData!} />
 
         <div className="bg-white mt-5" />
-        <ShareButton title={`${building} ${type}`} url={shareUrl} />
+        {!fromRecommand && (
+          <ShareButton title={`${building} ${type}`} url={shareUrl} size="lg" />
+        )}
+        {fromRecommand && (
+          <div className="absolute bottom-20 w-full px-3 flex flex-row items-center justify-center ">
+            {/* 여기에 absolute와 bottom-20을 추가합니다. */}
+            <ShareButton title="" url={shareUrl} size={"sm"} />
+            <Button className="bg-[#FFF0F3] w-full mx-3">
+              <span className="text-main">위치 보기</span>
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

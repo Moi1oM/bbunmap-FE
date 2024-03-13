@@ -33,7 +33,10 @@ export default function Home() {
   console.log("뻔맵은 아직 개발중이에요! 🤔");
   console.log("뻔맵은 더 좋은 서비스를 위해 노력하고 있어요! 🤩");
   console.log("뻔맵은 여러분의 의견을 기다리고 있어요! 🤗");
-  console.log("데이터를 찾아보려는 시도는 하지 말아주세요! 🙏");
+  console.log(
+    "개발을 좋아하는 여러분들을 기다리고 있어요! 🙏",
+    "https://handy-sidecar-68b.notion.site/1-482b51d0803248648be5bc0aadff44fe"
+  );
 
   const { isSearchModalOpen, setSearchModalClose } = useSearchModal();
   const { setTab } = useTabBarStore();
@@ -111,7 +114,7 @@ export default function Home() {
           fromBuildingName={routeData.fromBulidingName}
           toBuildingName={routeData.toBuildingName}
         /> */}
-          <BottomSheetTitle route="/recommand" settingRecommand={true}>
+          <BottomSheetTitle route="/recommand/place" settingRecommand={true}>
             <div className="font-bold">지금 갈만한 곳은</div>
           </BottomSheetTitle>
         </BottomSheetWithDynamicImport>

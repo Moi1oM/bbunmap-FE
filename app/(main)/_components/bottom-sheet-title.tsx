@@ -1,4 +1,3 @@
-import { useSpaceBarStore } from "@/hooks/useRecommandButton";
 import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
@@ -12,10 +11,8 @@ interface BottomSheetTitleProps {
 const BottomSheetTitle: React.FC<BottomSheetTitleProps> = ({
   children,
   route,
-  settingRecommand = false,
+  settingRecommand,
 }) => {
-  const { currentSpace, setSpace } = useSpaceBarStore();
-
   const router = useRouter();
 
   return (
@@ -24,9 +21,6 @@ const BottomSheetTitle: React.FC<BottomSheetTitleProps> = ({
       <div
         className="flex flex-row items-center justify-end hover:cursor-pointer text-slate-400"
         onClick={() => {
-          if (settingRecommand) {
-            setSpace("place");
-          }
           router.push(route);
         }}
       >

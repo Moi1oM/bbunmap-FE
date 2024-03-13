@@ -4,6 +4,7 @@ import { FloorFactilities } from "@/app/(main)/_components/floor-factilities";
 import TopToggleMenu from "@/app/(main)/_components/list-floor-top-bar";
 import RouterBar from "@/app/(main)/_components/router-bar";
 import TitleImage from "@/app/(main)/_components/title-image";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchKeywordConvi } from "@/hooks/useSearchKeywordConvi";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -214,21 +215,21 @@ const Building = () => {
 const FacSkeleton = () => {
   return (
     <div className="w-full h-full max-w-[450px] select-none bg-white scrollbar-hide overflow-scroll top-0 left-0 mx-auto my-0">
-      <div className="flex flex-col justify-end mt-8 mb-2 ml-3">
-        <div className="h-6 bg-gray-300 rounded animate-pulse"></div>
-        <div className="flex flex-row justify-evenly items-center mt-4">
-          <div className="w-24 h-6 bg-gray-300 rounded animate-pulse"></div>
-          <div className="w-24 h-6 bg-gray-300 rounded animate-pulse"></div>
-        </div>
-        <div className="mt-4">
+      <Skeleton className="flex flex-col justify-end mt-8 mb-2 ml-3">
+        <Skeleton className="h-6 bg-gray-300 rounded animate-pulse"></Skeleton>
+        <Skeleton className="flex flex-row justify-evenly items-center mt-4">
+          <Skeleton className="w-24 h-6 bg-gray-300 rounded animate-pulse"></Skeleton>
+          <Skeleton className="w-24 h-6 bg-gray-300 rounded animate-pulse"></Skeleton>
+        </Skeleton>
+        <Skeleton className="mt-4">
           {[...Array(5)].map((_, index) => (
-            <div
+            <Skeleton
               key={index}
               className="h-24 bg-gray-300 rounded mt-4 animate-pulse"
-            ></div>
+            ></Skeleton>
           ))}
-        </div>
-      </div>
+        </Skeleton>
+      </Skeleton>
     </div>
   );
 };
