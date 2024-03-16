@@ -67,6 +67,7 @@ const Building = () => {
   const params = useSearchParams();
   const buildingName: string = params.get("building") || "default";
   const toggleMenuHide: boolean = params.get("menuHide") === "true";
+  const onlyFloor: boolean = params.get("onlyFloor") === "true";
   const urlType: string = params.get("type") || "";
   const urlTypes: string[] = urlType.split(";");
   const [selectedMenu, setSelectedMenu] = useState<TopMenu>("list");
@@ -85,13 +86,19 @@ const Building = () => {
   });
 
   useEffect(() => {
-    if (isConvenienceType) {
+    if (isConvenienceType || onlyFloor) {
       setSelectedMenu("floormap");
     }
     // console.log(urlTypes, urlTypes.length);
     console.log(facilityData);
     console.log("is", isSearchKeywordConvi);
-  }, [facilityData, isConvenienceType, isSearchKeywordConvi, urlTypes]);
+  }, [
+    facilityData,
+    isConvenienceType,
+    isSearchKeywordConvi,
+    urlTypes,
+    onlyFloor,
+  ]);
 
   const facilitiesTypes = [
     "lounge",

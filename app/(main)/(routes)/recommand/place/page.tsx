@@ -51,8 +51,6 @@ const PlaceRecommand = ({}: PlaceRecommandProps) => {
 
   useEffect(() => {
     setTab("recommand");
-    setFullRecommandClose();
-    refreshKeyword();
     console.log("fetched data...", facilityData);
   }, []);
 

@@ -1,3 +1,4 @@
+import { usePlaceRecommand } from "@/hooks/usePlaceRecommand";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -10,6 +11,7 @@ interface ImageTitleDescriptionProps {
   urlType?: string;
   facFloor?: string;
   route?: string;
+  recommandTitle?: string;
 }
 
 export const ImageTitleDescription = ({
@@ -20,7 +22,10 @@ export const ImageTitleDescription = ({
   urlType,
   facFloor,
   route,
+  recommandTitle,
 }: ImageTitleDescriptionProps) => {
+  const { setKeyword } = usePlaceRecommand();
+
   const router = useRouter();
   useEffect(() => {
     console.log("image loading... ", image);
@@ -29,6 +34,7 @@ export const ImageTitleDescription = ({
     <div
       className="flex-col flex items-start justify-start max-w-[200px] overflow-hidden cursor-pointer mt-4 mr-3"
       onClick={() => {
+        if (recommandTitle) setKeyword(recommandTitle);
         if (route) {
           router.push(route);
         } else {

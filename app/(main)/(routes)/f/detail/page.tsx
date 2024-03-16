@@ -24,6 +24,7 @@ import FacilityDetailContent from "@/app/(main)/_components/facilitiy-detail/fa
 import { Button } from "@/components/ui/button";
 import Share from "@/public/icons/share.svg";
 import { toast } from "sonner";
+import { useSearchKeywordConvi } from "@/hooks/useSearchKeywordConvi";
 
 const fetchBuildingFacility = async (
   buildingName: string,
@@ -64,6 +65,7 @@ export interface ResponseFacilityDetail {
 }
 
 const Detail = () => {
+  const router = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
   const type: string = params.get("type") || "";
@@ -109,7 +111,7 @@ const Detail = () => {
   return (
     <div className="w-full h-full max-w-[450px] select-none bg-white scrollbar-hide overflow-scroll top-0 left-0 mx-0 my-0 relative">
       <div className="flex flex-col justify-start  mt-8 mb-2 ml-3">
-        <RouterBar share={share} />
+        <RouterBar share={share} fromRecommand={fromRecommand} />
         <span className="font-mono text-2xl mt-6 ml-3">
           {building} {facName}
         </span>
@@ -157,14 +159,26 @@ const Detail = () => {
         <FacilityDetailContent facilityData={facilityData!} />
 
         <div className="bg-white mt-5" />
-        {!fromRecommand && (
-          <ShareButton title={`${building} ${type}`} url={shareUrl} size="lg" />
-        )}
-        {fromRecommand && (
+        {!fromRecommand ||
+          (facilityError && (
+            <ShareButton
+              title={`${building} ${type}`}
+              url={shareUrl}
+              size="lg"
+            />
+          ))}
+        {fromRecommand && !facilityError && (
           <div className="absolute bottom-20 w-full px-3 flex flex-row items-center justify-center ">
             {/* 여기에 absolute와 bottom-20을 추가합니다. */}
             <ShareButton title="" url={shareUrl} size={"sm"} />
-            <Button className="bg-[#FFF0F3] w-full mx-3">
+            <Button
+              className="bg-[#FFF0F3] w-full mx-3"
+              onClick={() => {
+                router.push(
+                  `/b?type=${type}&building=${building}&onlyFloor=${true}`
+                );
+              }}
+            >
               <span className="text-main">위치 보기</span>
             </Button>
           </div>

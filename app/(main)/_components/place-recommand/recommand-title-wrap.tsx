@@ -56,6 +56,7 @@ const RecommandTitleWrap = ({ data }: RecommandTitleWrapProps) => {
                       }&type=${koreanToEnglish(fac.placeType)}&facFloor=${
                         fac.floor ?? "1"
                       }&fromRecommand=${true}`}
+                      recommandTitle={value.title}
                     />
                   ))
               : value.places.map((fac) => (
@@ -75,6 +76,7 @@ const RecommandTitleWrap = ({ data }: RecommandTitleWrapProps) => {
                     }&type=${koreanToEnglish(fac.placeType)}&facFloor=${
                       fac.floor ?? "1"
                     }&fromRecommand=${true}`}
+                    recommandTitle={value.title}
                   />
                 ))}
           </div>

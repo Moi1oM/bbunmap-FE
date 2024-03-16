@@ -7,11 +7,13 @@ import { useRouter } from "next/navigation";
 interface RouterBarProps {
   share?: boolean | null;
   fullRecommand?: boolean | null;
+  fromRecommand?: boolean;
 }
 
-const RouterBar = ({ share, fullRecommand }: RouterBarProps) => {
+const RouterBar = ({ share, fullRecommand, fromRecommand }: RouterBarProps) => {
   const router = useRouter();
-  const { setFullRecommandClose, refreshKeyword } = usePlaceRecommand();
+  const { setFullRecommandClose, refreshKeyword, setFullRecommandOpen } =
+    usePlaceRecommand();
 
   return (
     <div className="flex flex-row justify-start items-center">
@@ -24,6 +26,9 @@ const RouterBar = ({ share, fullRecommand }: RouterBarProps) => {
             setFullRecommandClose();
             refreshKeyword();
           } else {
+            if (fromRecommand) {
+              setFullRecommandOpen();
+            }
             router.back();
           }
         }}
