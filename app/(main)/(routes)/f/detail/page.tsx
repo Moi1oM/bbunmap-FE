@@ -102,6 +102,8 @@ const Detail = () => {
 
   let images = facilityData?.picFile?.split(",").map((value) => value.trim());
 
+  const justOne = !fromRecommand || facilityError;
+
   useEffect(() => {
     console.log("images... ", images);
     console.log("fetch Data... ", facilityData);
@@ -159,14 +161,9 @@ const Detail = () => {
         <FacilityDetailContent facilityData={facilityData!} />
 
         <div className="bg-white mt-5" />
-        {!fromRecommand ||
-          (facilityError && (
-            <ShareButton
-              title={`${building} ${type}`}
-              url={shareUrl}
-              size="lg"
-            />
-          ))}
+        {justOne && (
+          <ShareButton title={`${building} ${type}`} url={shareUrl} size="lg" />
+        )}
         {fromRecommand && !facilityError && (
           <div className="absolute bottom-20 w-full px-3 flex flex-row items-center justify-center ">
             {/* 여기에 absolute와 bottom-20을 추가합니다. */}
