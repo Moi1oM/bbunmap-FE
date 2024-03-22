@@ -15,5 +15,5 @@ export const EntranceNum: EntranceNumType = {
   하나스퀘어: 3,
   현대자동차경영관: 3,
   "LG-POSCO경영관": 2,
-  SK미래관: 4,
+  SK미래관: 4,
 };

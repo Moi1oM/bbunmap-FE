@@ -92,6 +92,7 @@ const BuildingDetail = () => {
 
   useEffect(() => {
     console.log("b detail ", isImgError);
+    console.log(EntranceNum, building, EntranceNum[building]);
   }, [isImgError]);
 
   return (
