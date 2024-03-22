@@ -90,7 +90,7 @@ const Building = () => {
       setSelectedMenu("floormap");
     }
     // console.log(urlTypes, urlTypes.length);
-    console.log(facilityData);
+    console.log("fetched data...", facilityData);
     console.log("is", isSearchKeywordConvi);
   }, [
     facilityData,
@@ -126,22 +126,26 @@ const Building = () => {
             : isSearchKeywordConvi
             ? "convenience"
             : urlType;
-        acc[buildingInfo.floor] = {
-          buildingName: buildingInfo.buildingName,
-          floor: buildingInfo.floor,
-          facilities: [],
-          floorMap: {
+        const floorKey = `${buildingInfo.floor}층`; // '층'을 붙여서 키를 문자열로 만듦
+        if (!acc[floorKey]) {
+          // acc 객체에서 floorKey를 사용
+          acc[floorKey] = {
+            buildingName: buildingInfo.buildingName,
             floor: buildingInfo.floor,
-            image: `/floorMap/${buildingInfo.buildingName}/${buildingInfo.floor}/${newType}.png`,
-          },
-        };
+            facilities: [],
+            floorMap: {
+              floor: buildingInfo.floor,
+              image: `/floorMap/${buildingInfo.buildingName}/${buildingInfo.floor}/${newType}.png`,
+            },
+          };
+        }
       }
       facilitiesTypes.forEach((type) => {
         buildingInfo[type].forEach((fac: FacResponse) => {
           urlTypes.forEach((urlType) => {
             if (urlType === "" || isEnglishAndKoreanSame(fac.type, urlType)) {
               // fac.type이 type과 동일한 경우에만 추가
-              acc[buildingInfo.floor].facilities.push({
+              acc[`${buildingInfo.floor}층`].facilities.push({
                 type: fac.type,
                 name: getFacilityName(type, fac),
                 image_src: `/fac-img/${fac.buildingName}/${
@@ -297,7 +301,11 @@ function isEnglishAndKoreanSame(facType: string, urlType: string) {
   // fac.type === englishToKorean(urlType)
   const urlTypeToKorean = englishToKorean(urlType);
   if (urlTypeToKorean === "그룹스터디룸") {
-    return facType === urlTypeToKorean || facType === "스터디룸";
+    return (
+      facType === urlTypeToKorean ||
+      facType === "스터디룸" ||
+      facType === "그룹룸"
+    );
   }
   return facType === urlTypeToKorean;
 }
