@@ -48,7 +48,9 @@ const FacilityDetailContent = ({
   } else if (
     facilityData?.type === "그룹스터디룸" ||
     facilityData?.type === "캐럴" ||
-    facilityData?.type === "스터디룸"
+    facilityData?.type === "스터디룸" ||
+    facilityData?.type === "열람실" ||
+    facilityData?.type === "수면실"
   ) {
     return (
       <div className="flex flex-row justify-start ml-6 mt-6">

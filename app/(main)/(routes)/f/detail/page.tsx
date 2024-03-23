@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import Share from "@/public/icons/share.svg";
 import { toast } from "sonner";
 import { useSearchKeywordConvi } from "@/hooks/useSearchKeywordConvi";
+import { koreanToEnglish } from "@/app/(main)/_components/image-title-description";
 
 const fetchBuildingFacility = async (
   buildingName: string,
@@ -90,7 +91,11 @@ const Detail = () => {
   } = useQuery<ResponseFacilityDetail>({
     queryKey: ["facilityDetailInfo", building, facName],
     queryFn: () => {
-      const promise = fetchBuildingFacility(building, type, facName);
+      const promise = fetchBuildingFacility(
+        building,
+        koreanToEnglish(type),
+        facName
+      );
       toast.promise(promise, {
         loading: "건물 시설 정보를 불러오는 중입니다...",
         success: "건물 시설 정보 로딩 성공!",

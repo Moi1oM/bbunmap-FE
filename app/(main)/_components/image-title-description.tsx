@@ -89,6 +89,10 @@ export function koreanToEnglish(type: string) {
       return "carrel";
     case "식사":
       return "restaurant";
+    case "그룹룸":
+      return "studyRoom";
+    case "열람실":
+      return "readingRoom";
     default:
       return type; // 알 수 없는 type에 대해서는 그대로 반환
   }
