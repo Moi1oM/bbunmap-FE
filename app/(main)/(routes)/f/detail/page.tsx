@@ -90,19 +90,8 @@ const Detail = () => {
     data: facilityData,
   } = useQuery<ResponseFacilityDetail>({
     queryKey: ["facilityDetailInfo", building, facName],
-    queryFn: () => {
-      const promise = fetchBuildingFacility(
-        building,
-        koreanToEnglish(type),
-        facName
-      );
-      toast.promise(promise, {
-        loading: "건물 시설 정보를 불러오는 중입니다...",
-        success: "건물 시설 정보 로딩 성공!",
-        error: "건물 시설 정보 로딩에 실패했습니다.",
-      });
-      return promise;
-    },
+    queryFn: () =>
+      fetchBuildingFacility(building, koreanToEnglish(type), facName),
   });
 
   let images = facilityData?.picFile?.split(",").map((value) => value.trim());

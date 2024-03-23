@@ -16,4 +16,9 @@ export const EntranceNum: EntranceNumType = {
   현대자동차경영관: 3,
   "LG-POSCO경영관": 2,
   SK미래관: 4,
+  법학관구관: 1,
+  법학관신관: 1,
+  "중앙광장 지하": 2,
+  해송법학도서관: 1,
+  CJ법학관: 1,
 };

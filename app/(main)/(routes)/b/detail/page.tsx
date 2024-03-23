@@ -51,15 +51,7 @@ const BuildingDetail = () => {
     data: facData,
   } = useQuery<FacilityInfo>({
     queryKey: ["facilityDetailList", building],
-    queryFn: () => {
-      const promise = fetchFacilityList(building!);
-      toast.promise(promise, {
-        loading: "시설 목록을 불러오는 중입니다...",
-        success: "시설 목록 로딩 성공!",
-        error: "시설 목록 로딩에 실패했습니다.",
-      });
-      return promise;
-    },
+    queryFn: () => fetchFacilityList(building!),
   });
 
   const facilityList = [
@@ -79,7 +71,7 @@ const BuildingDetail = () => {
       image: "/facility/studyRoom.png",
     },
     {
-      koreanName: "카페/식당",
+      koreanName: "생활",
       englishName: "cafe;restaurant",
       image: "/facility/cafe.png",
     },
