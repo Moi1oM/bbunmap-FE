@@ -81,7 +81,7 @@ const FacilityDetailContent = ({
         </div>
         <div className="flex flex-col justify-start items-start ml-4 flex-shrink-0">
           <span className="text-sm text-[#333333]">
-            {facilityData?.weekDayAvailableTime ?? "수집된 정보 없음."}
+            {facilityData?.weekdayAvailableTime ?? "수집된 정보 없음."}
           </span>
           <span className="text-sm text-[#333333]">
             {facilityData?.weekendAvailableTime ?? "수집된 정보 없음."}

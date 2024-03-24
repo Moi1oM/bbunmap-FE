@@ -52,7 +52,7 @@ export interface ResponseFacilityDetail {
   studyRoomName?: string;
   //카페용
   cafeName?: string;
-  weekDayAvailableTime?: string;
+  weekdayAvailableTime?: string;
   weekendAvailableTime?: string;
   //
   keyword?: string;
