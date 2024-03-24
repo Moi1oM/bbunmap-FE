@@ -7,7 +7,7 @@ export const EntranceNum: EntranceNumType = {
   국제관: 4,
   미디어관: 2,
   백주년기념관: 2,
-  서관: 3,
+  "문과대학(서관)": 3,
   신공학관: 2,
   우당교양관: 1,
   운초우선교육관: 1,
