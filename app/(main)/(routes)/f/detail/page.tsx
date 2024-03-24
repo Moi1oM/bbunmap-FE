@@ -26,6 +26,7 @@ import Share from "@/public/icons/share.svg";
 import { toast } from "sonner";
 import { useSearchKeywordConvi } from "@/hooks/useSearchKeywordConvi";
 import { koreanToEnglish } from "@/app/(main)/_components/image-title-description";
+import { cn } from "@/lib/utils";
 
 const fetchBuildingFacility = async (
   buildingName: string,
@@ -97,6 +98,7 @@ const Detail = () => {
   let images = facilityData?.picFile?.split(",").map((value) => value.trim());
 
   const justOne = !fromRecommand || facilityError;
+  const isHaksik = facName.includes("학식");
 
   useEffect(() => {
     console.log("images... ", images);
@@ -167,14 +169,21 @@ const Detail = () => {
             {/* 여기에 absolute와 bottom-20을 추가합니다. */}
             <ShareButton title="" url={shareUrl} size={"sm"} />
             <Button
-              className="bg-[#FFF0F3] w-full mx-3"
+              className={cn(
+                isHaksik ? "bg-gray-400" : "bg-[#FFF0F3]",
+                "w-full mx-3"
+              )}
               onClick={() => {
-                router.push(
-                  `/b?type=${type}&building=${building}&onlyFloor=${true}`
-                );
+                if (!isHaksik) {
+                  router.push(
+                    `/b?type=${type}&building=${building}&onlyFloor=${true}`
+                  );
+                }
               }}
             >
-              <span className="text-main">위치 보기</span>
+              <span className={cn(isHaksik ? "text-black" : "text-main")}>
+                위치 보기
+              </span>
             </Button>
           </div>
         )}
