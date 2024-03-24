@@ -19,17 +19,17 @@ export const FloorFactilities = ({
   urlType,
   facFloor,
 }: FloorFacilitiesProps) => {
-  useEffect(() => {
-    console.log(
-      "1234",
-      floor,
-      facilities,
-      buildingName,
-      buildInfo,
-      urlType,
-      facFloor
-    );
-  }, [buildInfo, buildingName, facFloor, facilities, floor, urlType]);
+  // useEffect(() => {
+  //   console.log(
+  //     "1234",
+  //     floor,
+  //     facilities,
+  //     buildingName,
+  //     buildInfo,
+  //     urlType,
+  //     facFloor
+  //   );
+  // }, [buildInfo, buildingName, facFloor, facilities, floor, urlType]);
 
   return (
     <div className="flex flex-col justify-start mt-4">

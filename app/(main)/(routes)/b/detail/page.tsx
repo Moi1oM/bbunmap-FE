@@ -61,7 +61,7 @@ const BuildingDetail = () => {
       image: "/facility/lounge.png",
     },
     {
-      koreanName: "캐럴/스터디룸",
+      koreanName: "스터디룸",
       englishName: "carrel;studyRoom",
       image: "/facility/carol.png",
     },
@@ -72,7 +72,7 @@ const BuildingDetail = () => {
     },
     {
       koreanName: "생활",
-      englishName: "cafe;restaurant",
+      englishName: "cafe;restaurant;convenience",
       image: "/facility/cafe.png",
     },
     {
@@ -147,7 +147,9 @@ const BuildingDetail = () => {
                   key={index}
                   onClick={() => {
                     router.push(
-                      `/b?type=${facility.englishName}&building=${building}`
+                      `/b?type=${
+                        facility.englishName
+                      }&building=${building}&fromBuildingDetail=${true}`
                     );
                   }}
                 >

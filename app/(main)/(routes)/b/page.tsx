@@ -68,13 +68,19 @@ const Building = () => {
   const buildingName: string = params.get("building") || "default";
   const toggleMenuHide: boolean = params.get("menuHide") === "true";
   const onlyFloor: boolean = params.get("onlyFloor") === "true";
+  const fromBuildingDetail: boolean =
+    params.get("fromBuildingDetail") === "true";
   const urlType: string = params.get("type") || "";
   const urlTypes: string[] = urlType.split(";");
   const [selectedMenu, setSelectedMenu] = useState<TopMenu>("list");
   const { isSearchKeywordConvi } = useSearchKeywordConvi();
 
-  const isConvenienceType =
-    urlTypes.includes("convenience") || isSearchKeywordConvi;
+  const isOnlyConvenienceType =
+    urlTypes.length === 1 && urlType === "convenience";
+
+  // const isConvenienceType =
+  //   urlTypes.includes("convenience") || isSearchKeywordConvi;
+  const isConvenienceType = isSearchKeywordConvi;
 
   const {
     isPending: facilityIsPending,
@@ -86,7 +92,11 @@ const Building = () => {
   });
 
   useEffect(() => {
-    if (isConvenienceType || onlyFloor) {
+    if (
+      isConvenienceType ||
+      onlyFloor ||
+      (fromBuildingDetail && isOnlyConvenienceType)
+    ) {
       setSelectedMenu("floormap");
     }
     // console.log(urlTypes, urlTypes.length);
@@ -125,7 +135,18 @@ const Building = () => {
             ? "carol"
             : isSearchKeywordConvi
             ? "convenience"
+            : isOnlyConvenienceType
+            ? fromBuildingDetail
+              ? "convenience"
+              : "onlyConvenience"
             : urlType;
+        console.log(
+          "newType...",
+          newType,
+          isSearchKeywordConvi,
+          fromBuildingDetail,
+          isOnlyConvenienceType
+        );
         const floorKey = `${buildingInfo.floor}층`; // '층'을 붙여서 키를 문자열로 만듦
         if (!acc[floorKey]) {
           // acc 객체에서 floorKey를 사용
