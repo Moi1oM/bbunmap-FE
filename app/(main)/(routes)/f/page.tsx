@@ -61,15 +61,7 @@ const Facility = () => {
     data: facilityData,
   } = useQuery<ResponseData[]>({
     queryKey: ["facilityNumList", type],
-    queryFn: () => {
-      const promise = fetchBuildingNums(type, entity);
-      toast.promise(promise, {
-        loading: "데이터를 불러오는 중입니다...",
-        success: "데이터 로딩 성공!",
-        error: "데이터 로딩에 실패했습니다.",
-      });
-      return promise;
-    },
+    queryFn: () => fetchBuildingNums(type, entity),
   });
   useEffect(() => {
     // isConviFromSearchModal이 true일 경우 setSearchKeywordConviTrue 실행
