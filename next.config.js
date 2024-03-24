@@ -14,7 +14,7 @@ const config = {
   },
 
   images: {
-    domains: ["k.kakaocdn.net", "localhost"],
+    domains: ["k.kakaocdn.net", "localhost", "bbunmap.com"],
   },
 };
 
