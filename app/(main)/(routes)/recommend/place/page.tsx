@@ -50,7 +50,7 @@ const PlaceRecommand = ({}: PlaceRecommandProps) => {
   });
 
   useEffect(() => {
-    setTab("recommand");
+    setTab("recommend");
     console.log("fetched data...", facilityData);
   }, []);
 
