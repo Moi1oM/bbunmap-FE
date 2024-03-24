@@ -65,7 +65,7 @@ const PlaceRecommand = ({}: PlaceRecommandProps) => {
               title="이동 꿀팁"
               selected={false}
               className="ml-6"
-              onclick={() => router.push("/recommand")}
+              onclick={() => router.push("/recommend")}
             />
             <SelectedButton
               title="공간 추천"

@@ -1,5 +1,5 @@
 import { title } from "process";
-import { RecommandedPlace } from "../../(routes)/recommand/place/page";
+import { RecommandedPlace } from "../../(routes)/recommend/place/page";
 import {
   ImageTitleDescription,
   koreanToEnglish,
@@ -55,7 +55,7 @@ const RecommandTitleWrap = ({ data }: RecommandTitleWrapProps) => {
                         fac.placeName
                       }&type=${koreanToEnglish(fac.placeType)}&facFloor=${
                         fac.floor ?? "1"
-                      }&fromRecommand=${true}`}
+                      }&fromRecommend=${true}`}
                       recommandTitle={value.title}
                     />
                   ))
@@ -75,7 +75,7 @@ const RecommandTitleWrap = ({ data }: RecommandTitleWrapProps) => {
                       fac.placeName
                     }&type=${koreanToEnglish(fac.placeType)}&facFloor=${
                       fac.floor ?? "1"
-                    }&fromRecommand=${true}`}
+                    }&fromRecommend=${true}`}
                     recommandTitle={value.title}
                   />
                 ))}

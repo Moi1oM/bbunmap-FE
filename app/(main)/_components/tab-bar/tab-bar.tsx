@@ -26,7 +26,7 @@ export default function TapBar() {
         displayName="실시간"
       />
       <TabBarButton
-        title="recommand"
+        title="recommend"
         iconSelected={<RecommIconAbled className="h-6 w-6" />}
         iconNonSelected={<RecommIcon className="h-6 w-6 " />}
         displayName="뻔맵추천"

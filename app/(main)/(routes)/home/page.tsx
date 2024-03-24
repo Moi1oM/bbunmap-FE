@@ -95,7 +95,7 @@ export default function Home() {
             seats={onAirData.seats}
             showText={true}
           />
-          <BottomSheetTitle route="/recommand">
+          <BottomSheetTitle route="/recommend">
             <div>
               <strong>이동꿀팁</strong>
             </div>
@@ -114,7 +114,7 @@ export default function Home() {
           fromBuildingName={routeData.fromBulidingName}
           toBuildingName={routeData.toBuildingName}
         /> */}
-          <BottomSheetTitle route="/recommand/place" settingRecommand={true}>
+          <BottomSheetTitle route="/recommend/place" settingRecommand={true}>
             <div className="font-bold">지금 갈만한 곳은</div>
           </BottomSheetTitle>
         </BottomSheetWithDynamicImport>

@@ -1,4 +1,4 @@
-import { RecommandedPlace } from "../../(routes)/recommand/place/page";
+import { RecommandedPlace } from "../../(routes)/recommend/place/page";
 import {
   ImageTitleDescription,
   koreanToEnglish,
@@ -36,7 +36,7 @@ const FullRecommand = ({ data }: FullRecommandProps) => {
                   fac.placeName
                 }&type=${koreanToEnglish(fac.placeType)}&facFloor=${
                   fac.floor ?? "1"
-                }&fromRecommand=${true}`}
+                }&fromRecommend=${true}`}
               />
             );
           })}

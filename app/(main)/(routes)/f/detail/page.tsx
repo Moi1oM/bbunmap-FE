@@ -76,7 +76,7 @@ const Detail = () => {
   const facility: Facility = type as Facility;
   const building = params.get("building");
   const shareString: string | null = params.get("share");
-  const fromRecommand = params.get("fromRecommand") === "true";
+  const fromRecommend = params.get("fromRecommend") === "true";
   const share: boolean | null =
     shareString !== null ? shareString.toLowerCase() === "true" : null;
   const mainURL = process.env.NEXT_PUBLIC_MAIN_URL;
@@ -97,7 +97,7 @@ const Detail = () => {
 
   let images = facilityData?.picFile?.split(",").map((value) => value.trim());
 
-  const justOne = !fromRecommand || facilityError;
+  const justOne = !fromRecommend || facilityError;
   const isHaksik = facName.includes("학식");
 
   useEffect(() => {
@@ -109,7 +109,7 @@ const Detail = () => {
   return (
     <div className="w-full h-full max-w-[450px] select-none bg-white scrollbar-hide overflow-scroll top-0 left-0 mx-0 my-0 relative">
       <div className="flex flex-col justify-start  mt-8 mb-2 ml-3">
-        <RouterBar share={share} fromRecommand={fromRecommand} />
+        <RouterBar share={share} fromRecommend={fromRecommend} />
         <span className="font-mono text-2xl mt-6 ml-3">
           {building} {facName}
         </span>
@@ -164,7 +164,7 @@ const Detail = () => {
         {justOne && (
           <ShareButton title={`${building} ${type}`} url={shareUrl} size="lg" />
         )}
-        {fromRecommand && !facilityError && (
+        {fromRecommend && !facilityError && (
           <div className="absolute bottom-20 w-full px-3 flex flex-row items-center justify-center ">
             {/* 여기에 absolute와 bottom-20을 추가합니다. */}
             <ShareButton title="" url={shareUrl} size={"sm"} />

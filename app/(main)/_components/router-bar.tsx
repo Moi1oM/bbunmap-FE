@@ -7,10 +7,10 @@ import { useRouter } from "next/navigation";
 interface RouterBarProps {
   share?: boolean | null;
   fullRecommand?: boolean | null;
-  fromRecommand?: boolean;
+  fromRecommend?: boolean;
 }
 
-const RouterBar = ({ share, fullRecommand, fromRecommand }: RouterBarProps) => {
+const RouterBar = ({ share, fullRecommand, fromRecommend }: RouterBarProps) => {
   const router = useRouter();
   const { setFullRecommandClose, refreshKeyword, setFullRecommandOpen } =
     usePlaceRecommand();
@@ -26,7 +26,7 @@ const RouterBar = ({ share, fullRecommand, fromRecommand }: RouterBarProps) => {
             setFullRecommandClose();
             refreshKeyword();
           } else {
-            if (fromRecommand) {
+            if (fromRecommend) {
               setFullRecommandOpen();
             }
             router.back();

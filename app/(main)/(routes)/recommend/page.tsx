@@ -13,7 +13,7 @@ const Recommand = () => {
   const { setTab } = useTabBarStore();
 
   useEffect(() => {
-    setTab("recommand");
+    setTab("recommend");
   }, []);
 
   const data = {
@@ -40,7 +40,7 @@ const Recommand = () => {
             selected={false}
             className="ml-6"
             onclick={() => {
-              router.push("/recommand/place");
+              router.push("/recommend/place");
             }}
           />
         </div>
