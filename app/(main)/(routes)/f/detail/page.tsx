@@ -131,7 +131,11 @@ const Detail = () => {
                       <CardContent className="flex aspect-square items-center justify-center">
                         <div className="relative w-[360px] h-[260px]">
                           <Image
-                            src={`/fac-img/${building}/${facFloor}/${value}.jpg`}
+                            src={
+                              value.includes("/")
+                                ? value
+                                : `/fac-img/${building}/${facFloor}/${value}.jpg`
+                            }
                             sizes="(max-width: 600px) 100vw"
                             fill
                             className="object-contain"
