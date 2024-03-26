@@ -19,7 +19,7 @@ const Recommand = () => {
   const data = {
     route: [
       {
-        title: "이캠 실내 루트",
+        title: "이캠 실외 루트",
         imageSrc: "/route/route1.png",
       },
       {
